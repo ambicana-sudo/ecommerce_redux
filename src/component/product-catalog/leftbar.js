@@ -6,14 +6,19 @@ import React from 'react';
 const Leftbar =()=>{
 	
 	const [products, setProducts] = useState([])
-	const [maxPage, setMaxPage] =useState(3)
-	const [pageSize, setPageSize] = useState(10)
+	//this maxpage is calculated from backend and based on number of values we have.
+	//so we use setMaxPage only after the response of some api calls
+	const [maxPage, setMaxPage] =useState(0)
+	//current page represents the currently selected page in pagination
+	const[currentPage, setCurrentPage] = useState(1)
+	const [pageSize, setPageSize] = useState(4)
 
 	const fetchList = () => {
-		fetch('http://localhost:3001/products').then(res=>res.json())
+		fetch(`http://localhost:3001/products?page=1&size=${pageSize}`).then(res=>res.json())
 					.then(data=>{
 						setMaxPage(data.maxPage)
-						setProducts(data.productList)})
+						setProducts(data.productList)
+					})
 	}
 	useEffect(()=>{
 		fetchList()
@@ -21,7 +26,8 @@ const Leftbar =()=>{
 
 
 	const handleChange = (page)=>{
-		fetch(`http://localhost:3001/products?page=${page},size=${pageSize}`).then(res=>res.json())
+		setCurrentPage(page)
+		fetch(`http://localhost:3001/products?page=${page}&size=${pageSize}`).then(res=>res.json())
 		.then(data=> {
 			// debugger
 			if(data.productList){
@@ -61,13 +67,13 @@ const Leftbar =()=>{
 									setPageSize(e.target.value)
 								}
 								}>
-										<option>10</option>
-										<option>20</option>
-										<option>30</option>
+										<option>4</option>
+										<option>8</option>
+										<option>12</option>
 								</select>
 							</div>
 							
-							<button className="btn-sm" onClick={(event, page)=> handleChange(page)}>Submit</button>
+							<button className="btn-sm" onClick={()=> handleChange(currentPage)}>Submit</button>
 						</div>
 
 						<Pagination count={maxPage} onChange={(event, page)=> handleChange(page)} showFirstButton showLastButton />

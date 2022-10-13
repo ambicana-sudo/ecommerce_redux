@@ -33,6 +33,7 @@ const AddProduct = () => {
 				brand: brand,
 				category: category,
 				created: date,
+				isLiked: false
 			})
 		};
 		fetch('http://localhost:3001/products', requestOptions)
