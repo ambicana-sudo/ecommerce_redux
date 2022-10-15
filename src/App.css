@@ -185,7 +185,6 @@ section.banner_section {
 .arrival-info{
   letter-spacing: 7px;
   flex-grow: 1;
-  margin-bottom: 50px;
 }
 
 .arrival-info p{
@@ -513,6 +512,29 @@ button.cart-btn img{
 
 .product-image img{
   width: 100%;
+}
+
+.product-list .product-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-list .product-image::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,.2);
+  left: -100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s ease;
+}
+
+.product-list:hover .product-image::before {
+  left: 0;
+  opacity: 1;
+  visibility: visible;
 }
 
 .product-info {
