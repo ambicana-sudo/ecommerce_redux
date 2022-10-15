@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from '../images/nike-removebg-preview.png'
+import NewProduct from './new-products'
 
 const Banner = ()=>{
     return(
@@ -10,7 +11,7 @@ const Banner = ()=>{
 
                     <div className="arrival-info">
                         <h1 className='banner-title'>New<br/>Products</h1>
-                        <p>Checkout our new arrived products</p>
+                        <p>Checkout our newly arrived products</p>
                     </div>
                     
                     <div className="new-product">
@@ -21,10 +22,14 @@ const Banner = ()=>{
                         <div className='product-info'>
                             <h3 className="product-name">Nike Air Force</h3>
                             <p className="product-price">$185</p>
-                            <button>Get It Now</button>
+                            <button>
+                                {/* <span><FontAwesomeIcon icon={faArrowRightLong} /></span> */}
+                                Get It Now
+                            </button>
                         </div>
                     </div>
                 </div>
+                <NewProduct/>
             </div>
         </section>
     )

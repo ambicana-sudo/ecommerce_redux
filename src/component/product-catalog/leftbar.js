@@ -4,13 +4,20 @@ import { useState, useEffect } from "react"
 import React from 'react';
 
 const Leftbar =()=>{
-	
+
 	const [products, setProducts] = useState([])
-	const [maxPage, setMaxPage] =useState(3)
-	const [pageSize, setPageSize] = useState(10)
+
+	//this maxpage is calculated from backend and based on number of values we have.
+	//so we use setMaxPage only after the response of some api calls
+	const [maxPage, setMaxPage] =useState(0)
+
+	//current page represents the currently selected page in pagination
+	const[currentPage, setCurrentPage] = useState(1)
+
+	const [itemPerPage, setItemPerPage] = useState(6)
 
 	const fetchList = () => {
-		fetch('http://localhost:3001/products').then(res=>res.json())
+		fetch(`http://localhost:3001/products?page=1&size=${itemPerPage}`).then(res=>res.json())
 					.then(data=>{
 						setMaxPage(data.maxPage)
 						setProducts(data.productList)})
@@ -21,9 +28,10 @@ const Leftbar =()=>{
 
 
 	const handleChange = (page)=>{
-		fetch(`http://localhost:3001/products?page=${page},size=${pageSize}`).then(res=>res.json())
+		setCurrentPage(page)
+		fetch(`http://localhost:3001/products?page=${page}&size=${itemPerPage}`).then(res=>res.json())
 		.then(data=> {
-			// debugger
+			// debugger;
 			if(data.productList){
 				setProducts(data.productList)
 				setMaxPage(data.maxPage)
@@ -31,20 +39,28 @@ const Leftbar =()=>{
 		})
 	}
 
+	const hasRecentlyAdded = products.map((item)=>{
+		if(item.created){
+			const diff = Number(item.created) - Date.now()
+
+			console.log(diff)
+			// console.log(tpeof Num)
+			// console.log(date)
+
+			return diff
+		}
+	})
+
 	return(
 		<>
 			<div id="leftbar">
 					<div className="left_head">
 						<div className='sort-product'>
 							<strong>Sort By:</strong>
-							<select
-									name="category-list"
-									id="category-list"
-									onChange={(e)=> null}
-							>
-									<option>New</option>
-									<option>Best Seller</option>
-									<option>Sold</option>
+							<select onChange={(e)=> null}>
+								<option>New</option>
+								<option>Best Seller</option>
+								<option>Sold</option>
 							</select>
 						</div>
 						<h1>Products</h1>
@@ -56,18 +72,15 @@ const Leftbar =()=>{
 						<div className='page-size'>
 							
 							<div className='size-option'>
-							<strong>Page Size:</strong>
-								<select onChange={(e)=>{
-									setPageSize(e.target.value)
-								}
-								}>
-										<option>10</option>
-										<option>20</option>
-										<option>30</option>
+							<strong>No. of Items:</strong>
+								<select onChange={(e)=>{setItemPerPage(e.target.value)}}>
+										<option>6</option>
+										<option>12</option>
+										<option>18</option>
 								</select>
 							</div>
 							
-							<button className="btn-sm" onClick={(event, page)=> handleChange(page)}>Submit</button>
+							<button className="btn-sm" onClick={()=> handleChange(currentPage)}>Submit</button>
 						</div>
 
 						<Pagination count={maxPage} onChange={(event, page)=> handleChange(page)} showFirstButton showLastButton />
@@ -81,10 +94,10 @@ export default Leftbar
 
 
 // const fiteredItem = (val)=>{
-	//     let newProduct = [...products]
-	//     const newCategory = newProduct.filter((item)=>{
-	//         return item.category = val
-	//     })
-	//     // setProducts(newCategory)
-	//     console.log(newCategory)
-	// }
+//     let newProduct = [...products]
+//     const newCategory = newProduct.filter((item)=>{
+//         return item.category = val
+//     })
+//     // setProducts(newCategory)
+//     console.log(newCategory)
+// }

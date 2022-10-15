@@ -3,28 +3,28 @@ import React from 'react';
 // import Categories from "./categories-list"
 
 const Sidebar = ()=>{
-// const [products, setProducts] = useState([])
+	// const [products, setProducts] = useState([])
 
-// const categoryList = [
-// 	...new Set(
-// 		products.map((item)=>{
-// 			return item.category
-// 		})
-// 	)
-// ];
+	// const categoryList = [
+	// 	...new Set(
+	// 		products.map((item)=>{
+	// 			return item.category
+	// 		})
+	// 	)
+	// ];
 
-// const [categoryMenu, setCategoryMenu] = useState(categoryList)
-// console.log(categoryList)
-// console.log(categoryMenu)
+	// const [categoryMenu, setCategoryMenu] = useState(categoryList)
+	// console.log(categoryList)
+	// console.log(categoryMenu)
 
 
-// const fetchList = () => {
-// 	fetch('http://localhost:3001/products').then(res=>res.json())
-// 				.then(data=> setProducts(data.productList))
-// }
-// useEffect(()=>{
-// 	fetchList()
-// },[])
+	// const fetchList = () => {
+	// 	fetch('http://localhost:3001/products').then(res=>res.json())
+	// 				.then(data=> setProducts(data.productList))
+	// }
+	// useEffect(()=>{
+	// 	fetchList()
+	// },[])
 
 	// const filterProduct = (category)=>{
 	//     let newProducts = [...products]
@@ -34,9 +34,9 @@ const Sidebar = ()=>{
 	//     })
 	//     setProducts(filteredItem)
 	// }
-return(
-	<>
-		<div id="sidebar">
+	return(
+		<>
+			<div id="sidebar">
 				<div className="category-block">
 					<h3>Categories</h3> 
 					{/* <Categories categoryMenu={categoryMenu}/> */}
@@ -70,8 +70,8 @@ return(
 						<button style={{background: `orange`}}></button>
 					</div>
 				</div>
-		</div>
-	</>
+			</div>
+		</>
 	)
 }
 export default Sidebar

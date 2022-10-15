@@ -19,6 +19,8 @@ const AddProduct = () => {
 	// const [size, setSize] = useState()
 	// const [selectedYear, setSelectedYear] = useState("");
 
+	
+
 	const saveProducts = ()=>{
 		const date = Date.now()
 
@@ -33,12 +35,17 @@ const AddProduct = () => {
 				brand: brand,
 				category: category,
 				created: date,
+				isLiked: false,
 			})
 		};
 		fetch('http://localhost:3001/products', requestOptions)
-			 .then(response => response.json())
-
-		message.info('Product has been saved')
+			.then(response => response.json()).then(data=>{
+			if(data.errmsg){
+				message.info('Invalid')
+			}else{
+				message.info('Product has been saved')
+			}
+		})
   	}
   
 	const SignupSchema = Yup.object().shape({
@@ -88,10 +95,7 @@ const AddProduct = () => {
 								) : null}
 
 								<Field name="productId" placeholder="Product Id" onKeyUp={(e)=> setProductId(e.target.value)}/>
-								{errors.productId && touched.productId ? (
-									<div className='error'>{errors.productId}</div>
-								) : null}
-
+								
 								<Field name="price"  placeholder="Price" onKeyUp={(e)=> setPrice(e.target.value)}/>
 								{errors.price && touched.price ? (
 									<div className='error'>{errors.price}</div>
@@ -101,9 +105,6 @@ const AddProduct = () => {
 								{errors.brand && touched.brand ? <div className='error'>{errors.brand}</div> : null}
 
 								<Field name="quantity" placeholder="Quantity" type="number" onKeyUp={(e)=> setQuantity(e.target.value)}/>
-								{errors.quantity && touched.quantity ? (
-									<div className='error'>{errors.quantity}</div>
-								) : null}
 
 								{/* <Field id="color" name="color" as={Select} options={colorOptions} placeholder="Select Color" onChange={(e, selected) => setFieldValue("industry", selected.value)}/>
 								<div>
