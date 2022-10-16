@@ -3,16 +3,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Tech Stack
-- [ ] React
-- [ ] Routes
-- [ ] Redux
-- [ ] Material Design
-- [ ] Ant Design
+- [x] React
+- [x] Routes
+- [x] Redux
+- [x] Material Design
+- [x] Ant Design
 
 ## Features
 - [ ] Search by Category
-- [*] Pagination
-- [*] Page Size
+- [x] Pagination
+- [x] Page Size
 - [ ] Add New Product Tag
 - [ ] Cart
 - [ ] Wishlist
