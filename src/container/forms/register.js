@@ -1,9 +1,11 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Button from '../../component/button'
 import {Link} from "react-router-dom"
 import React from 'react';
+import { message } from 'antd';
 
 const Login = ()=>{
+	const [registerUser, setRegisterUser] = ([])
 	const [inputName, setInputName] = useState("")
 	const [nameErr, setNameErr] = useState("")
 	const [inputEmail, setInputEmail] = useState("")
@@ -12,6 +14,25 @@ const Login = ()=>{
 	const [passErr, setPassErr] = useState("")
 
 	const submitDetail = ()=>{
+		const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+				name: inputName, 
+				email: inputEmail, 
+				password: password 
+			})
+        };
+        fetch('http://localhost:3001/register', requestOptions)
+			.then(response => response.json()).then(data=>{
+			if(data.errmsg){
+				message.info('Invalid')
+			}else{
+				message.info('User has been Registered')
+			}
+			console.log(data)
+		})
+
 		// name validation
 		if(!inputName){
 			setNameErr("This field is required")
@@ -60,7 +81,7 @@ const Login = ()=>{
                         </div>
                         
                         <div className='form-group'>
-                            <input placeholder="Password" onKeyUp={(e)=> setPassword(e.target.value)}></input>
+                            <input placeholder="Password" type="password" onKeyUp={(e)=> setPassword(e.target.value)}></input>
                             {passErr ? <span>{passErr}</span> : null}
                         </div>
                         

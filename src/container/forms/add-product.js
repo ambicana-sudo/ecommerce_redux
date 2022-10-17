@@ -8,11 +8,11 @@ import React from 'react';
 
 const AddProduct = () => {
 	
-	const [productName, setProductName] = useState()
-	const [productId, setProductId] = useState()
-	const [quantity, setQuantity] = useState()
-	const [brand, setBrand] = useState()
-	const [price, setPrice] = useState()
+	const [productName, setProductName] = useState("")
+	const [productId, setProductId] = useState(null)
+	const [quantity, setQuantity] = useState(null)
+	const [brand, setBrand] = useState("")
+	const [price, setPrice] = useState(null)
 	// const [color, setColor] = useState()
 	const [category, setCategory] = useState()
 	// const [description, setDescription] = useState()
@@ -46,6 +46,11 @@ const AddProduct = () => {
 				message.info('Product has been saved')
 			}
 		})
+		setProductName('')
+		setProductId('')
+		setQuantity('')
+		setBrand('')
+		setPrice('')
   	}
   
 	const SignupSchema = Yup.object().shape({
@@ -56,12 +61,6 @@ const AddProduct = () => {
 		brand: Yup.string().required('Required'),
 	});
 
-	// const colorOptions = [
-	// 	{ value: "red", label: "red" },
-	// 	{ value: "green", label: "green" },
-	// 	{ value: "blue", label: "blue" },
-	// 	{ value: "orange", label: "orange" },
-	// ];
 	return(
 		<>
 			<div className='form' id="add-product">
@@ -118,7 +117,7 @@ const AddProduct = () => {
 									<div className='error'>{errors.category}</div>
 								) : null}
 
-								<button>Save</button>
+								<button type="submit">Save</button>
 							</Form>
 						)}
 						</Formik>
