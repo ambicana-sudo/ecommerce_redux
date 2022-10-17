@@ -8,9 +8,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [x] Redux
 - [x] Material Design
 - [x] Ant Design
+- [X] Formik & Yup for Form Validation
 
 ## Features
-- [ ] Search by Category
+- [ ] Search Product by Category
 - [x] Pagination
 - [x] Page Size
 - [ ] Add New Product Tag
