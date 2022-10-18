@@ -1,7 +1,5 @@
 # Getting Started with Ecommerce App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Tech Stack
 * React
 * Routes
@@ -9,6 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Material Design
 * Ant Design
 * Formik & Yup for Form Validation
+* Bycrypt
 
 ## Features
 - [ ] Search Product by Category
