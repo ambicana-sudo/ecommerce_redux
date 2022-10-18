@@ -679,7 +679,8 @@ select:focus-visible {
 }
 
 .pagination .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-  background-color: rgba(64 169 255 / 35%);
+  background-color: transparent;
+  border: 1px solid #000;
 }
 
 .wishlist{

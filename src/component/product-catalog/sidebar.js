@@ -20,19 +20,19 @@ const Sidebar = ()=>{
 
 	// const fetchList = () => {
 	// 	fetch('http://localhost:3001/products').then(res=>res.json())
-	// 				.then(data=> setProducts(data.productList))
+// 				.then(data=> setProducts(data.productList))
 	// }
 	// useEffect(()=>{
 	// 	fetchList()
 	// },[])
 
 	// const filterProduct = (category)=>{
-	//     let newProducts = [...products]
+//     let newProducts = [...products]
 
-	//     let filteredItem = newProducts.filter((item)=>{
-	//         return item.category === category
-	//     })
-	//     setProducts(filteredItem)
+//     let filteredItem = newProducts.filter((item)=>{
+//         return item.category === category
+//     })
+//     setProducts(filteredItem)
 	// }
 	return(
 		<>
@@ -47,11 +47,21 @@ const Sidebar = ()=>{
 
 					<div className="category-list">
 						<div className="filter">
-								<div className="form-group"><label><input type="radio" name="radio" checked/><span>All </span></label></div>
-								<div className="form-group"><label><input type="radio" name="radio"/><span>Nike</span></label></div>
-								<div className="form-group"><label><input type="radio" name="radio"/><span>Addidas</span></label></div>
-								<div className="form-group"> <label><input type="radio" name="radio"/><span>Random</span></label></div>
-								<div className="form-group"> <label><input type="radio" name="radio"/><span>Local</span></label></div>
+							<div className="form-group">
+								<label><input type="radio" name="radio" checked/><span>All </span></label>
+							</div>
+							<div className="form-group">
+								<label><input type="radio" name="radio"/><span>Nike</span></label>
+							</div>
+							<div className="form-group">
+								<label><input type="radio" name="radio"/><span>Addidas</span></label>
+							</div>
+							<div className="form-group">
+								<label><input type="radio" name="radio"/><span>Random</span></label>
+							</div>
+							<div className="form-group">
+								<label><input type="radio" name="radio"/><span>Local</span></label>
+							</div>
 						</div>  
 					</div>
 				</div>

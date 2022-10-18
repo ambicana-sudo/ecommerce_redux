@@ -4,12 +4,12 @@ import React from 'react';
 import Banner from "../component/banner";
 
 const Home =()=>{
-    return(
-        <div>
-        <Header />
-        <Banner/>
-        <ProductCat />
-        </div>
-    )
+	return(
+		<div>
+			<Header />
+			<Banner/>
+			<ProductCat />
+		</div>
+	)
 }
 export default Home

@@ -12,7 +12,7 @@ const NewProduct = ()=>{
 		.then(data=>{
 			// debugger;
 			setProducts(data.productList)
-		})
+		})	
 	}
 	useEffect(()=>{
 		fetchList()

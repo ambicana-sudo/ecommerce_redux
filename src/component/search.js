@@ -16,20 +16,20 @@ const Search = ()=>{
 		fetchList()
 	},[])
 
-	const searchProduct = ()=>{
-		// const newProducts = [...products]
-		// const filterProduct = newProducts.filter((item)=>{
-		// 	if(searchItem.include()){
+	const searchProduct = (value)=>{
+		const newProducts = [...products]
+		const filterProduct = newProducts.filter((item)=>{
+			if(searchItem.include()){
 
-		// 	}
-		// })
-		// setProducts(filterProduct)
+			}
+		})
+		setProducts(filterProduct)
 	}
 	return(
 		<>
 			<div className='search'>
-				<input value={searchItem} placeholder='Search' onChange={(e)=> setSearchItem()}></input>
-				<button onClick={()=> searchProduct()}>
+				<input placeholder='Search' onChange={(e)=> setSearchItem(e.target.value)}></input>
+				<button onClick={()=> searchProduct(searchItem)}>
 					<FontAwesomeIcon icon={faMagnifyingGlass} />
 				</button>
 			</div>

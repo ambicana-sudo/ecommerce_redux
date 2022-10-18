@@ -1,17 +1,19 @@
+import React from 'react'
 import Image from '../../images/default-thumbnail.jpg'
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { increment } from '../../features/counter/counter.slice';
 import { useDispatch} from 'react-redux';
+// import { unstable_composeClasses } from '@mui/material';
 
 const ProductBox = (props)=>{
 	const dispatch = useDispatch();
 
 	const onUpClick = async(id,isLiked) => {
 		dispatch(increment());
-
-		console.log(id)
+		
+		// console.log(id)
 		const requestOptions = {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
@@ -19,7 +21,9 @@ const ProductBox = (props)=>{
 		  };
 		  const response = await fetch('http://localhost:3001/products/' + id, requestOptions);
 		  const data = await response.json();
-		  console.log(data)
+		  if(data){
+			props.fetchList()
+		  }
 	};
 
 	return(
