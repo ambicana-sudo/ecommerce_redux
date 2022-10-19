@@ -1,8 +1,11 @@
 import React from 'react'
+import {useState} from 'react'
 
 const Cart = ()=>{
-    return(
 
+    const [cartList, setCartList] = useState()
+    return(
+        <h1>Cart</h1>
     )
 }
 
