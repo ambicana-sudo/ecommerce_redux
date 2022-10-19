@@ -4,6 +4,7 @@ import Login from "./container/forms/login";
 import Register from "./container/forms/register"
 import ErrorPage from "./container/error-page"
 import AddProduct from "./container/forms/add-product";
+import Header from "./component/header";
 import Home from "./container/home";
 import Wishlist from "./container/wishlist";
 import Cart from "./container/cart";
@@ -20,7 +21,6 @@ const App = ()=> {
 
   return (
     <div className="App">
-		{/* <Home /> */}
 		<Router>
 			<Routes>
 				<Route exact path="/" element={<Login/>}></Route>
@@ -29,7 +29,7 @@ const App = ()=> {
 				<Route path="/home" element={<Home/>}></Route>
 				<Route path="/wishlist" element={<Wishlist/>}></Route>
 				<Route path="/cart" element={<Cart/>}></Route>
-				<Route element={<ErrorPage/>}></Route>
+				<Route path="*" element={<ErrorPage/>}></Route>
 			</Routes>
 		</Router>
     </div>
