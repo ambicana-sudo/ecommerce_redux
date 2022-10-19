@@ -6,6 +6,7 @@ import Image from '../images/default-thumbnail.jpg'
 const Wishlist = ()=>{
 
     const [products, setProducts] = useState([])
+	 const [wishListItem, setWishListItem] = useState()
 
 	const fetchList = () => {
 	fetch(`http://localhost:3001/products`).then(res=>res.json())
