@@ -25,7 +25,7 @@ const NewProduct = ()=>{
 				const {name, category, price} = item;
 				if(item.tag === "new"){
 					return(
-						<div className="new-items">
+						<div className="new-items" key={item.id}>
 							<div className="product-image">
 								<img src={Image} alt=""/>
 							</div>

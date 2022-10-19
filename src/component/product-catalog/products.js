@@ -11,19 +11,21 @@ const ProductBox = (props)=>{
 	const dispatch = useDispatch();
 
 	const onUpClick = async(id,isLiked) => {
-		dispatch(increment());
+		if(!isLiked){
+			dispatch(increment());
+		}
 		
 		// console.log(id)
 		const requestOptions = {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({isLiked: isLiked ? false : true})
-		  };
-		  const response = await fetch('http://localhost:3001/products/' + id, requestOptions);
-		  const data = await response.json();
-		  if(data){
+		};
+		const response = await fetch('http://localhost:3001/products/' + id, requestOptions);
+		const data = await response.json();
+		if(data){
 			props.fetchList()
-		  }
+		}
 	};
 
 	return(
@@ -31,7 +33,7 @@ const ProductBox = (props)=>{
 			{props.products.map((item)=>{
 				const {name, price,category,isLiked} = item;
 				return(
-					<div className="product-list">
+					<div className="product-list" ky={item.id}>
 						<div className="product-image">
 							<img src={Image} alt=""/>
 						</div>
@@ -48,12 +50,11 @@ const ProductBox = (props)=>{
 								style={{color: isLiked ? 'red' : 'black'}} />
 							</button>
 						
-							<button className="cart-btn">
+							<button className="cart-btn" onClick={()=> onUpClick()}>
 								<FontAwesomeIcon icon={faCartShopping} />
 							</button>
 						</div>
 						{/* <div className={hasRecentlyAdded() ? 'tag' : null}>New</div> */}
-						
 					</div>
 				)
 			})}

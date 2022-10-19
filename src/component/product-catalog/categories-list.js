@@ -4,8 +4,9 @@ const Categories = (props)=>{
 		<div className="category-list">
 			{props.categoryMenu.map((item)=>{
 				return(
-					<button>{item}</button>
+					<button onClick={()=> props.filterProduct(item)}>{item}</button>
 				)
+				console.log(JSON.stringify())
 			})}
 			
 		</div>

@@ -54,37 +54,37 @@ const handleChange = (page)=>{
 return(
 	<>
 		<div id="leftbar">
-				<div className="left_head">
-					<div className='sort-product'>
-						<strong>Sort By:</strong>
-						<select onChange={(e)=> null}>
-							<option>New</option>
-							<option>Best Seller</option>
-							<option>Sold</option>
+			<div className="left_head">
+				<div className='sort-product'>
+					<strong>Sort By:</strong>
+					<select onChange={(e)=> null}>
+						<option>New</option>
+						<option>Best Seller</option>
+						<option>Sold</option>
+					</select>
+				</div>
+				<h1>Products</h1>
+			</div>
+
+			<ProductBox fetchList={()=>fetchList()} products={products}/>
+
+			<div className='pagination'>
+				<div className='page-size'>
+					
+					<div className='size-option'>
+					<strong>No. of Items:</strong>
+						<select onChange={(e)=>{setItemPerPage(e.target.value)}}>
+							<option>6</option>
+							<option>12</option>
+							<option>18</option>
 						</select>
 					</div>
-					<h1>Products</h1>
+					
+					<button className="btn-sm" onClick={()=> handleChange(currentPage)}>Submit</button>
 				</div>
 
-				<ProductBox fetchList={()=>fetchList()} products={products}/>
-
-				<div className='pagination'>
-					<div className='page-size'>
-						
-						<div className='size-option'>
-						<strong>No. of Items:</strong>
-							<select onChange={(e)=>{setItemPerPage(e.target.value)}}>
-								<option>6</option>
-								<option>12</option>
-								<option>18</option>
-							</select>
-						</div>
-						
-						<button className="btn-sm" onClick={()=> handleChange(currentPage)}>Submit</button>
-					</div>
-
-					<Pagination count={maxPage} onChange={(event, page)=> handleChange(page)} showFirstButton showLastButton />
-				</div>
+				<Pagination count={maxPage} onChange={(event, page)=> handleChange(page)} showFirstButton showLastButton />
+			</div>
 		</div>
 	</>
 )

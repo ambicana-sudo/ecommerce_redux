@@ -2,11 +2,20 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping,faUser } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux';
+import {useState, useEffect} from 'react'
+import {Link} from "react-router-dom"
 import Search from './search';
 
 
 const Header = ()=>{
 	const { count } = useSelector((state) => state.count);
+	const [wishCount, setWishCout] = useState({count})
+	console.log(wishCount)
+
+	useEffect(()=>{
+		// fetch
+		setWishCout()
+	},[])
 
 	return(
 		<div className='header-section'>
@@ -28,10 +37,11 @@ const Header = ()=>{
 							<li><Search/></li>
 							<li><FontAwesomeIcon icon={faUser} /></li>
 							<li>
-								<FontAwesomeIcon icon={faCartShopping} />
+								<Link to="/cart"><FontAwesomeIcon icon={faCartShopping} /></Link>
+								<span>{count}</span>
 							</li>
 							<li>
-								<FontAwesomeIcon icon={faHeart} />
+								<Link to="/wishlist"><FontAwesomeIcon icon={faHeart} /></Link>
 								<span>{count}</span>
 							</li>
 						</ul>

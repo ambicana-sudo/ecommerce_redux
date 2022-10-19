@@ -1,9 +1,9 @@
 import React from 'react';
-// import {useState, useEffect} from 'react'
-// import Categories from "./categories-list"
+import {useState, useEffect} from 'react'
+import Categories from "./categories-list"
 
 const Sidebar = ()=>{
-	// const [products, setProducts] = useState([])
+	const [products, setProducts] = useState([])
 
 	// const categoryList = [
 	// 	...new Set(
@@ -14,32 +14,40 @@ const Sidebar = ()=>{
 	// ];
 
 	// const [categoryMenu, setCategoryMenu] = useState(categoryList)
-	// console.log(categoryList)
-	// console.log(categoryMenu)
 
 
-	// const fetchList = () => {
-	// 	fetch('http://localhost:3001/products').then(res=>res.json())
-// 				.then(data=> setProducts(data.productList))
-	// }
-	// useEffect(()=>{
-	// 	fetchList()
-	// },[])
+	const fetchList = () => {
+		fetch('http://localhost:3001/products').then(res=>res.json())
+				.then(data=> setProducts(data.productList))
+	}
+	useEffect(()=>{
+		fetchList()
+	},[])
 
-	// const filterProduct = (category)=>{
-//     let newProducts = [...products]
+	const filterProduct = (category)=>{
+    let newProducts = [...products]
 
-//     let filteredItem = newProducts.filter((item)=>{
-//         return item.category === category
-//     })
-//     setProducts(filteredItem)
-	// }
+    let filteredItem = newProducts.filter((item)=>{
+		console.log(filteredItem)
+        return item.category === category
+    })
+    setProducts(filteredItem)
+	 
+	}
 	return(
 		<>
 			<div id="sidebar">
 				<div className="category-block">
 					<h3>Categories</h3> 
-					{/* <Categories categoryMenu={categoryMenu}/> */}
+					{/* <Categories categoryMenu={categoryMenu} filterProduct={filterProduct}/> */}
+					<ul>
+						<li onClick={
+							()=> filterProduct('Clothing') 
+							}
+							>Clothing</li>
+						<li onClick={()=> filterProduct('Accesories')}>Accesories</li>
+						<li onClick={()=> filterProduct('Shoe')}>Shoe</li>
+					</ul>
 				</div>
 				
 				<div className="brand-block">
