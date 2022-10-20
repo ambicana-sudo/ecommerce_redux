@@ -3,16 +3,22 @@ import Image from '../../images/default-thumbnail.jpg'
 // import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import { increment } from '../../features/counter/counter.slice';
+import { increment, decrement } from '../../features/counter/counter.slice';
 import { useDispatch} from 'react-redux';
 // import { unstable_composeClasses } from '@mui/material';
 
 const ProductBox = (props)=>{
 	const dispatch = useDispatch();
+	const onDownClick = () => {
+		dispatch(decrement());
+	};
 
 	const onUpClick = async(id,isLiked) => {
 		if(!isLiked){
 			dispatch(increment());
+		}else{
+			
+			dispatch(decrement());
 		}
 		
 		// console.log(id)
@@ -50,7 +56,7 @@ const ProductBox = (props)=>{
 								style={{color: isLiked ? 'red' : 'black'}} />
 							</button>
 						
-							<button className="cart-btn" onClick={()=> onUpClick()}>
+							<button className="cart-btn" onClick={()=> {onUpClick(); onDownClick();}}>
 								<FontAwesomeIcon icon={faCartShopping} />
 							</button>
 						</div>

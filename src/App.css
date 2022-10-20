@@ -734,3 +734,16 @@ select:focus-visible {
 .search {
   position: relative;
 }
+
+/* wished product */
+.wished-product .product-list{
+  width: 100%;
+  flex-flow: row;
+  margin-right: 0
+}
+
+.wished-product .product-btn{
+  position: static;
+  opacity: 1;
+  visibility: visible
+}

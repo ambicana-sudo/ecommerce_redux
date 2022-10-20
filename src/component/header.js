@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping,faUser } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux';
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import {Link} from "react-router-dom"
 import Search from './search';
 
@@ -10,12 +10,18 @@ import Search from './search';
 const Header = ()=>{
 	const { count } = useSelector((state) => state.count);
 	const [wishCount, setWishCout] = useState({count})
+
 	console.log(wishCount)
 
-	useEffect(()=>{
-		// fetch
-		setWishCout()
-	},[])
+	// useEffect(()=>{
+	// 	fetch('http://localhost:3000/wishlist')
+	// 	.then(res => {
+	// 		return res.json()
+	// 	})
+	// 	.then(data => {
+	// 		setWishCout(data)
+	// 	})
+	// },[])
 
 	return(
 		<div className='header-section'>
@@ -25,10 +31,10 @@ const Header = ()=>{
 
 					<div className="navigation">
 						<ul className="nav">
-								<li>Men</li>
-								<li>Women</li>
-								<li>Kids</li>
-								<li>Sale</li>
+							<li>Men</li>
+							<li>Women</li>
+							<li>Kids</li>
+							<li>Sale</li>
 						</ul>
 					</div>
 					
