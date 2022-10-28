@@ -1,9 +1,9 @@
 import React from 'react'
-import {useState} from 'react'
+// import {useState} from 'react'
 
 const Cart = ()=>{
 
-    const [cartList, setCartList] = useState()
+    // const [cartList, setCartList] = useState()
     return(
         <h1>Cart</h1>
     )

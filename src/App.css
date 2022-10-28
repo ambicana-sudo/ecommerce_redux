@@ -18,6 +18,7 @@ body{
 
 *{
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -320,6 +321,22 @@ input{
   outline: 0;
   border: 1px solid #bbb;
   box-shadow: none;
+}
+
+/* pass field */
+.passfield{
+  position: relative;
+}
+
+.passfield button{
+  height: 40px;
+  line-height: 20px;
+  width: auto !important;
+  position: absolute;
+  right: 0;
+  background: none;
+  font-size: 11px !important;
+  padding: 0 10px
 }
 
 #add-product input{

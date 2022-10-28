@@ -12,11 +12,13 @@ const countSlice = createSlice({
   name: "count",
   initialState,
   reducers: {
-    increment: (state) => {
+    increment: (state,action) => {
       state.count = state.count + 1;
     },
     decrement: (state) => {
-      state.count = state.count - 1;
+      if(state.count > 0){
+        state.count = state.count - 1;
+      }
     }
   }
 });

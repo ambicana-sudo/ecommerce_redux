@@ -7,18 +7,31 @@ import { useDispatch, useSelector} from 'react-redux';
 
 const Wishlist = ()=>{
 	const {count} =useSelector(state=>state.count)
+
 	const dispatch = useDispatch()
     const [products, setProducts] = useState([])
-	// const [wishListItem, setWishListItem] = useState()
-	console.log(count)
+	const [totalQuantity, setTotalQuantity] = useState(0)
+
+	const number = count+1
+	console.log(number)
 	
-	const onDownClick = () => {
+	const onDownClick = (index) => {
 		dispatch(decrement());
+		calculateItems();	
 	};
 
-	const onUpClick = () => {
+	const onUpClick = (index) => {
 		dispatch(increment());
+		calculateItems();
 	};
+
+	const calculateItems = ()=>{
+		const totalItem = products.reduce((total, item)=>{
+			return total + item.quantity
+		}, 0)
+		setTotalQuantity(totalItem)
+	}
+	
 
 	const fetchList = () => {
 	fetch(`http://localhost:3001/products`).then(res=>res.json())
@@ -32,6 +45,7 @@ const Wishlist = ()=>{
 	},[])
 
     return(
+		<>
 		<section className='wishlist-section'>
 			<div className='container'>
 				<div className='page-heading'>
@@ -44,53 +58,68 @@ const Wishlist = ()=>{
 							<tr>
 								<th></th>
 								<th>Product</th>
-								<th>Quantity</th>
 								<th>Price</th>
+								<th>Quantity</th>
+								<th>Total Price</th>
 								<th>Add to cart</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
 						<tbody>
-							
-								{products.map((item)=>{
-									const {name, category, price} = item;
-									if(item.isLiked === true){
-										return(
-											<tr>
-												<td>
-														<img src={Image} alt=""/>
-												</td>
-												<td>
-														<h3 className="product-name">{name}</h3>
-												</td>
-												<td><p className="product-price"><em>${price}</em></p></td>
-												<td>
-													<div className='quantity'>
-														<button onClick={()=> onUpClick()}>+</button>
-														<p className='num'>{count}</p>
-														<button onClick={()=>onDownClick()}>-</button>
-													</div>
-												</td>
-												<td>
-													<button className="cart">
-														<FontAwesomeIcon icon={faCartShopping} />
-													</button>
-												</td>
-												<td>
-													<button className="delete">
-														<FontAwesomeIcon icon={faXmark} />
-													</button>
-												</td>
-											</tr>
-										)
-									}
-								})}
-							
+							{products.map((item, index)=>{
+								const {name,price} = item;
+								if(item.isLiked === true){
+									return(
+										<tr>
+											<td>
+												<img src={Image} alt=""/>
+											</td>
+											<td>
+												<h3 className="product-name">{name}</h3>
+											</td>
+											<td><p className="product-price"><em>${price}</em></p></td>
+											<td>
+												<div className='quantity'>
+													<button onClick={(e)=> onUpClick(e.target)}>+</button>
+													<p className='num'>{number}</p>
+													<button onClick={(e)=>onDownClick(e.target)}>-</button>
+												</div>
+											</td>
+											<td>
+												<p className='total-price'>{price * number}</p>
+											</td>
+											<td>
+												<button className="cart">
+													<FontAwesomeIcon icon={faCartShopping} />
+												</button>
+											</td>
+											<td>
+												<button className="delete">
+													<FontAwesomeIcon icon={faXmark} />
+												</button>
+											</td>
+										</tr>
+									)
+								}
+							})}
+							<p className='total'>total no. of Item = {number}</p>
+							{totalQuantity}
+
 						</tbody>
 					</table>
+					{/* <p className='total'>total no. of Item = {number}</p> */}
 				</div>
 			</div>
 		</section>
+
+		{/* <div>
+			{productItems.map((item)=>{
+				return(
+					<li>{item.name}</li>
+				)
+			})}
+		</div> */}
+		</>
     )
 }
 export default Wishlist

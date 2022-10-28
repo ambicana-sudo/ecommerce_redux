@@ -1,9 +1,11 @@
 import {useState} from 'react'
-import Button from '../../component/button';
 import{Link} from "react-router-dom"
 import React from 'react';
 import { message } from 'antd';
 // import FormInput from '../../component/form-input';
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 
 const Login = ()=>{
@@ -11,6 +13,16 @@ const Login = ()=>{
 	const [nameErr, setNameErr] = useState("")
 	const [password, setPassword] = useState("")
 	const [passErr, setPassErr] = useState("")
+	const [passType, setPassType] =useState("password")
+	const navigate = useNavigate()
+
+	const togglePassword = ()=>{
+		if(passType === "password"){
+			setPassType("text")
+		}else{
+			setPassType("password")
+		}
+	}
 
 	const submitDetail = ()=>{
 		// name validation
@@ -18,7 +30,7 @@ const Login = ()=>{
 			setNameErr("This field is required")
 		}else{
 			setNameErr("")
-		}
+		}	
 
 		// password validation
 		if(password.length < 8){
@@ -40,13 +52,16 @@ const Login = ()=>{
 				.then(res=>res.json())
 				.then(data=>{
 					if(data.errmsg){
-						message.info('Invalid')
+						message.info('Invalid user or password')
 					}else{
 						message.info(`You're logged In`)
+						navigate('/home')
 					}
 				})
 			}
-      }
+      	}
+		setInputName('')
+		setPassword('')
 	}
 
 	return(
@@ -65,8 +80,11 @@ const Login = ()=>{
 							{nameErr ? <span>{nameErr}</span> : null}
 						</div>
 						
-						<div className='form-group'>
-							<input type="password" placeholder="Password" onKeyUp={(e)=> setPassword(e.target.value)}></input>
+						<div className='form-group passfield'>
+							<input type={passType} placeholder="Password" onKeyUp={(e)=> setPassword(e.target.value)}></input>
+							<button onClick={()=> togglePassword()}>
+								{passType === "password" ? <FontAwesomeIcon icon={faEye}/> :<FontAwesomeIcon icon={faEyeSlash}/>}
+							</button>
 							{passErr ? <span>{passErr}</span> : null}
 						</div>
 						

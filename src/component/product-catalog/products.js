@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from '../../images/default-thumbnail.jpg'
-// import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { increment, decrement } from '../../features/counter/counter.slice';
@@ -8,7 +7,9 @@ import { useDispatch} from 'react-redux';
 // import { unstable_composeClasses } from '@mui/material';
 
 const ProductBox = (props)=>{
+	
 	const dispatch = useDispatch();
+
 	const onDownClick = () => {
 		dispatch(decrement());
 	};
@@ -17,7 +18,6 @@ const ProductBox = (props)=>{
 		if(!isLiked){
 			dispatch(increment());
 		}else{
-			
 			dispatch(decrement());
 		}
 		
@@ -39,7 +39,7 @@ const ProductBox = (props)=>{
 			{props.products.map((item)=>{
 				const {name, price,category,isLiked} = item;
 				return(
-					<div className="product-list" ky={item.id}>
+					<div className="product-list" key={item.id}>
 						<div className="product-image">
 							<img src={Image} alt=""/>
 						</div>

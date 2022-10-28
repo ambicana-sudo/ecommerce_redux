@@ -1,12 +1,17 @@
 import React from 'react'
-import { changeWidth } from './productItem.slice'
+import { productData, selectedProduct } from './productItem.slice'
 import { useDispatch, useSelector } from 'react-redux'
 
-const ProductItem = ()=>{
-    const {products} = useSelector(state=>state.product)
+const ProductListing = ()=>{
+    const test = useSelector(state=>state.product)
     const dispatch = useDispatch()
+
+    // const getProduct = ()=> {
+    //     dispatch(productData())
+    // }
+
     return(
         <></>
     )
 }
-export default ProductItem
+export default ProductListing

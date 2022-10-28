@@ -42,7 +42,6 @@ const handleChange = (page)=>{
 // const hasRecentlyAdded = products.map((item)=>{
 // 	if(item.created){
 // 		const diff = Number(item.created) - Date.now()
-
 // 		console.log(diff)
 // 		// console.log(tpeof Num)
 // 		// console.log(date)
@@ -50,6 +49,7 @@ const handleChange = (page)=>{
 // 		return diff
 // 	}
 // })
+// console.log(hasRecentlyAdded)
 
 return(
 	<>

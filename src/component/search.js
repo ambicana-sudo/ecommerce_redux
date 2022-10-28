@@ -1,12 +1,9 @@
 import React from 'react';
 import {useState, useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass,faHeart, faCartShopping} from '@fortawesome/free-solid-svg-icons'
-import { increment } from '../features/counter/counter.slice';
-import { useDispatch} from 'react-redux';
+import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 
 const Search = ()=>{
-	const dispatch = useDispatch();
 
 	const [searchItem, setSearchItem] = useState(null)
 	const [products, setProducts] = useState([])
@@ -20,22 +17,7 @@ const Search = ()=>{
 		fetchList()
 	},[])
 
-	const onUpClick = async(id,isLiked) => {
-		dispatch(increment());
-		
-		// console.log(id)
-		const requestOptions = {
-			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({isLiked: isLiked ? false : true})
-		  };
-		  const response = await fetch('http://localhost:3001/products/' + id, requestOptions);
-		  const data = await response.json();
-		  if(data){
-			fetchList()
-		  }
-	};
-
+	
 	const searchProduct = (value)=>{
 		const newProducts = [...products]
 		const filterProduct = newProducts.filter((item)=>{

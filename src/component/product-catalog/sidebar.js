@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react'
-import Categories from "./categories-list"
+// import Categories from "./categories-list"
 
 const Sidebar = ()=>{
 	const [products, setProducts] = useState([])

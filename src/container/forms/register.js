@@ -1,8 +1,8 @@
 import {useState} from 'react'
-import Button from '../../component/button'
 import {Link} from "react-router-dom"
 import React from 'react';
 import { message } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ()=>{
 	// const [registerUser, setRegisterUser] = ([])
@@ -12,6 +12,7 @@ const Login = ()=>{
 	const [emailErr, setEmailErr] = useState("")
 	const [password, setPassword] = useState("")
 	const [passErr, setPassErr] = useState("")
+	const navigate = useNavigate()
 
 	const submitDetail = ()=>{
 
@@ -55,6 +56,10 @@ const Login = ()=>{
 						message.info('Invalid')
 					}else{
 						message.info('User has been Registered')
+						setInputName('')
+						setInputEmail('')
+						setPassword('')
+						navigate('/')
 					}
 					// console.log(data)
 				})

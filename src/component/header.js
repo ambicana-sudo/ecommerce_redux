@@ -2,16 +2,15 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping,faUser } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux';
-import {useState} from 'react'
 import {Link} from "react-router-dom"
 import Search from './search';
 
 
 const Header = ()=>{
 	const { count } = useSelector((state) => state.count);
-	const [wishCount, setWishCout] = useState({count})
+	// const [wishCount, setWishCout] = useState({count})
 
-	console.log(wishCount)
+	// console.log(wishCount)
 
 	// useEffect(()=>{
 	// 	fetch('http://localhost:3000/wishlist')
