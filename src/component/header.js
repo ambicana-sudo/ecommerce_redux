@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping,faUser } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
-import Search from './search';
+import Search from './search/search';
 
 
 const Header = ()=>{

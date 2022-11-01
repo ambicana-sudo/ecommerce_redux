@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { increment, decrement } from '../../features/counter/counter.slice';
 import { useDispatch} from 'react-redux';
+// import {Link} from "react-router-dom"
 // import { unstable_composeClasses } from '@mui/material';
 
 const ProductBox = (props)=>{
@@ -14,7 +15,11 @@ const ProductBox = (props)=>{
 		dispatch(decrement());
 	};
 
-	const onUpClick = async(id,isLiked) => {
+	const onUpClick = () => {
+		dispatch(increment());
+	};
+
+	const likeHandle = async(id,isLiked) => {
 		if(!isLiked){
 			dispatch(increment());
 		}else{
@@ -38,6 +43,8 @@ const ProductBox = (props)=>{
 		<div className="product">
 			{props.products.map((item)=>{
 				const {name, price,category,isLiked} = item;
+				// const id = item._id
+				// console.log(id)
 				return(
 					<div className="product-list" key={item.id}>
 						<div className="product-image">
@@ -48,15 +55,16 @@ const ProductBox = (props)=>{
 							<h3 className="product-name">{name}</h3>
 							<small className='product-cat'>{category}</small>
 							<p className="product-price"><em>${price}</em></p>
+							{/* <p className="product-price"><em>{item._id}</em></p> */}
 						</div>
 						
 						<div className="product-btn">
-							<button className="wishlist" onClick={()=> onUpClick(item._id, isLiked)}>
+							<button className="wishlist" onClick={()=> likeHandle(item._id, isLiked)}>
 								<FontAwesomeIcon icon={faHeart} 
 								style={{color: isLiked ? 'red' : 'black'}} />
 							</button>
 						
-							<button className="cart-btn" onClick={()=> {onUpClick(); onDownClick();}}>
+							<button className="cart-btn" onClick={()=> {onUpClick()}}>
 								<FontAwesomeIcon icon={faCartShopping} />
 							</button>
 						</div>

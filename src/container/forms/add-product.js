@@ -19,9 +19,15 @@ const AddProduct = () => {
 	// const [size, setSize] = useState()
 	// const [selectedYear, setSelectedYear] = useState("");
 
+	const fileHanlde = (e)=>{
+		console.log(e.target.files)
+
+		
+
+	}
 	
 
-	const saveProducts = ()=>{
+	const saveProducts = (e)=>{
 		const date = Date.now()
 
 		const requestOptions = {
@@ -38,19 +44,21 @@ const AddProduct = () => {
 				isLiked: false,
 			})
 		};
-		fetch('http://localhost:3001/products', requestOptions)
-			.then(response => response.json()).then(data=>{
-			if(data.errmsg){
-				message.info('Invalid')
-			}else{
-				message.info('Product has been saved')
-			}
+
+		// const url = URL.createObjectURL(e.target.files[0])
+		const formData = new FormData();
+		formData.append('avatar', e.target.files[0])
+
+		fetch('http://localhost:3001/products', {
+			method: 'POST',
+			body: formData,
+			dataType: 'jsonP'
 		})
-		setProductName('')
-		setProductId('')
-		setQuantity('')
-		setBrand('')
-		setPrice('')
+		// setProductName('')
+		// setProductId('')
+		// setQuantity('')
+		// setBrand('')
+		// setPrice('')
   	}
   
 	const SignupSchema = Yup.object().shape({
@@ -79,6 +87,7 @@ const AddProduct = () => {
 								brand: '',
 								quantity: '',
 								category: '',
+								filePath: '',
 							}}
 							validationSchema={SignupSchema}
 							onSubmit={values => {
@@ -116,6 +125,11 @@ const AddProduct = () => {
 								{errors.category && touched.category ? (
 									<div className='error'>{errors.category}</div>
 								) : null}
+
+								<Field name="avatar" type="file" placeholder="uplaod Image" onChange={(e)=> fileHanlde(e)}/>
+								{/* {errors.filePath && touched.filePath ? (
+									<div className='error'>{errors.filePath}</div>
+								) : null} */}
 
 								<button type="submit">Save</button>
 							</Form>

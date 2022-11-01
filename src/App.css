@@ -450,22 +450,22 @@ button{
 }
 
 /* sidebar */
-#sidebar {
+#sideContent {
   width: 25%;
   border-right: 1px solid #e7e7e7;
   padding: 20px;
 }
 
-#sidebar h3 {
+#sideContent h3 {
   text-transform: uppercase;
   border-bottom: 1px solid #e7e7e7;
   padding-bottom: 7px;
 }
-#sidebar>div {
+#sideContent>div {
   margin-bottom: 20px;
 }
 
-#sidebar > div li {
+#sideContent > div li {
   list-style: none;
   margin-bottom: 5px;
 }
@@ -478,7 +478,7 @@ button{
   padding: 0;
 }
 
-#leftbar{
+#rightContent{
   padding: 20px;
 }
 
@@ -724,7 +724,7 @@ select:focus-visible {
   font-size: 11px;
 }
 
-.search input {
+.nav .search input {
   background: none;
   border: 0;
   border-bottom: 1px solid #fff;
@@ -750,6 +750,22 @@ select:focus-visible {
 
 .search {
   position: relative;
+}
+
+.dropdown{
+  position: absolute;
+  background: #fff;
+  color: #000;
+  width: 100%;
+  z-index: 2;
+}
+
+.dropdown ul{
+  padding-left: 0;
+}
+
+.dropdown li{
+  list-style: none;
 }
 
 /* wished product */

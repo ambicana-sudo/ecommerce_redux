@@ -60,8 +60,6 @@ const Login = ()=>{
 				})
 			}
       	}
-		setInputName('')
-		setPassword('')
 	}
 
 	return(

@@ -8,25 +8,26 @@ import AddProduct from "./container/forms/add-product";
 import Home from "./container/home";
 import Wishlist from "./container/wishlist";
 import Cart from "./container/cart";
-import ProductDetail from "./container/product-detail";
-import WebFont from "webfontloader";
-import {useEffect} from 'react'
+import ProductDetail from "./component/product-detail";
+// import WebFont from "webfontloader";
+// import {useEffect} from 'react'
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
  } from "react-router-dom";
+import SearchResult from "./component/search/search-result";
 
 
 const App = ()=> {
-	useEffect(()=>{
-		WebFont.load({
-			google: {
-				families: ['Roboto', 'Poppins']
-			}
-		})
-	}
-	,[])
+	// useEffect(()=>{
+	// 	WebFont.load({
+	// 		google: {
+	// 			families: ['Roboto', 'Poppins']
+	// 		}
+	// 	})
+	// }
+	// ,[])
 
   return (
     <div className="App">
@@ -39,7 +40,8 @@ const App = ()=> {
 				<Route path="/home" element={<Home/>}></Route>
 				<Route path="/wishlist" element={<Wishlist/>}></Route>
 				<Route path="/cart" element={<Cart/>}></Route>
-				<Route path="/product/:productId" element={<ProductDetail/>}></Route>
+				<Route path="/product/:id" element={<ProductDetail/>}></Route>
+				<Route path="/search" element={<SearchResult/>}></Route>
 				<Route path="*" element={<ErrorPage/>}></Route>
 			</Routes>
 		</Router>

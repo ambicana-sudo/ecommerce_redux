@@ -7,28 +7,26 @@ import { useDispatch, useSelector} from 'react-redux';
 
 const Wishlist = ()=>{
 	const {count} =useSelector(state=>state.count)
-
 	const dispatch = useDispatch()
+
     const [products, setProducts] = useState([])
 	const [totalQuantity, setTotalQuantity] = useState(0)
 
 	const number = count+1
 	console.log(number)
 	
-	const onDownClick = (index) => {
+	const onDownClick = () => {
 		dispatch(decrement());
-		calculateItems();	
 	};
 
-	const onUpClick = (index) => {
+	const onUpClick = () => {
 		dispatch(increment());
-		calculateItems();
 	};
 
 	const calculateItems = ()=>{
 		const totalItem = products.reduce((total, item)=>{
-			return total + item.quantity
-		}, 0)
+			return total + number
+		}, 1)
 		setTotalQuantity(totalItem)
 	}
 	
@@ -43,6 +41,7 @@ const Wishlist = ()=>{
 	useEffect(()=>{
 		fetchList()
 	},[])
+
 
     return(
 		<>
@@ -80,9 +79,9 @@ const Wishlist = ()=>{
 											<td><p className="product-price"><em>${price}</em></p></td>
 											<td>
 												<div className='quantity'>
-													<button onClick={(e)=> onUpClick(e.target)}>+</button>
+													<button onClick={(e)=> onUpClick()}>+</button>
 													<p className='num'>{number}</p>
-													<button onClick={(e)=>onDownClick(e.target)}>-</button>
+													<button onClick={(e)=>onDownClick()}>-</button>
 												</div>
 											</td>
 											<td>
@@ -102,9 +101,7 @@ const Wishlist = ()=>{
 									)
 								}
 							})}
-							<p className='total'>total no. of Item = {number}</p>
-							{totalQuantity}
-
+							<p className='total'>total no. of Item = {totalQuantity}</p>
 						</tbody>
 					</table>
 					{/* <p className='total'>total no. of Item = {number}</p> */}

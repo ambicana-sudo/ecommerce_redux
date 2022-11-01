@@ -3,7 +3,7 @@ import ProductBox from './products';
 import { useState, useEffect } from "react"
 import React from 'react';
 
-const Leftbar =()=>{
+const RightContent =()=>{
 
 const [products, setProducts] = useState([])
 
@@ -53,7 +53,7 @@ const handleChange = (page)=>{
 
 return(
 	<>
-		<div id="leftbar">
+		<div id="rightContent">
 			<div className="left_head">
 				<div className='sort-product'>
 					<strong>Sort By:</strong>
@@ -90,7 +90,7 @@ return(
 )
 }
 
-export default Leftbar
+export default RightContent
 
 
 // const fiteredItem = (val)=>{

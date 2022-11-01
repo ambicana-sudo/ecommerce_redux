@@ -1,4 +1,4 @@
-import ProductCat from "../component/product-catalog/product-display";
+import ProductContent from "./productContent";
 import Header from "../component/header";
 import React from 'react';
 import Banner from "../component/banner";
@@ -8,7 +8,7 @@ const Home =()=>{
 		<div>
 			<Header />
 			<Banner/>
-			<ProductCat />
+			<ProductContent />
 		</div>
 	)
 }
