@@ -1,72 +1,65 @@
 import { Formik, Field, Form } from 'formik';
-// import Select from "react-select";
 import { useState} from 'react'
 import * as Yup from 'yup';
 import { message } from 'antd';
 import 'antd/dist/antd.css';
 import React from 'react';
 
+import DemoAddProduct from './demo-product-form';
+
 const AddProduct = () => {
-	
+	// <DemoAddProduct/>
 	const [productName, setProductName] = useState("")
 	const [productId, setProductId] = useState(null)
 	const [quantity, setQuantity] = useState(null)
 	const [brand, setBrand] = useState("")
 	const [price, setPrice] = useState(null)
-	// const [color, setColor] = useState()
 	const [category, setCategory] = useState()
-	// const [description, setDescription] = useState()
-	// const [size, setSize] = useState()
-	// const [selectedYear, setSelectedYear] = useState("");
+	const [file, setFile] = useState('')
 
-	const fileHanlde = (e)=>{
-		console.log(e.target.files)
-
-		
-
+	const fileUpload = (e)=>{
+		// console.log(event.target.files[0])
+        // console.log(URL.createObjectURL(event.target.files[0]))
+        const imgURL = e.target.files[0]
+        // console.log(imgURL)
+        setFile(imgURL)
 	}
 	
-
-	const saveProducts = (e)=>{
+	const saveProducts = ()=>{
 		const date = Date.now()
-
-		const requestOptions = {
-			 method: 'POST',
-			 headers: { 'Content-Type': 'application/json' },
-			 body: JSON.stringify({ 
-				name: productName, 
-				id: productId, 
-				quantity: quantity,
-				price: price,
-				brand: brand,
-				category: category,
-				created: date,
-				isLiked: false,
-			})
-		};
 
 		// const url = URL.createObjectURL(e.target.files[0])
 		const formData = new FormData();
-		formData.append('avatar', e.target.files[0])
+		formData.append('avatar', file)
+		formData.append('name', productName)
+		formData.append('id', productId)
+		formData.append('quantity', quantity)
+		formData.append('category', category)
+		formData.append('price', price)
+		formData.append('brand', brand)
+		formData.append('created', date)
+		formData.append('isLiked', false)
 
 		fetch('http://localhost:3001/products', {
 			method: 'POST',
 			body: formData,
-			dataType: 'jsonP'
+			dataType: 'jsonP',
 		})
-		// setProductName('')
-		// setProductId('')
-		// setQuantity('')
-		// setBrand('')
-		// setPrice('')
+		if(formData.errmsg){
+			message.info('Invalid')
+		}else{
+			message.info('Product has been saved')
+		}
   	}
   
 	const SignupSchema = Yup.object().shape({
 		productName: Yup.string()
-			.required('Required'),
-		price: Yup.string()
-			.required('Required'),
-		brand: Yup.string().required('Required'),
+			.required('Name is Required'),
+		price: Yup.number()
+			.required("* Price is Required!!")
+			.positive("* Must be positive number!!")
+			.integer("* Must be Integer value!!"),
+		brand: Yup.string().required('Brand is Required'),
 	});
 
 	return(
@@ -91,45 +84,29 @@ const AddProduct = () => {
 							}}
 							validationSchema={SignupSchema}
 							onSubmit={values => {
-								// same shape as initial values
 								saveProducts()
 							}}
 						>
 						{({ errors, touched }) => (
 							<Form>
 								<Field name="productName" placeholder="Product Name" onKeyUp={(e)=> setProductName(e.target.value)}/>
-								{errors.productName && touched.productName ? (
-									<div className='error'>{errors.productName}</div>
-								) : null}
+								{errors.productName && touched.productName ? (<div className='error'>{errors.productName}</div>) : null}
 
 								<Field name="productId" placeholder="Product Id" onKeyUp={(e)=> setProductId(e.target.value)}/>
 								
 								<Field name="price"  placeholder="Price" onKeyUp={(e)=> setPrice(e.target.value)}/>
-								{errors.price && touched.price ? (
-									<div className='error'>{errors.price}</div>
-								) : null}
+								{errors.price && touched.price ? (<div className='error'>{errors.price}</div>) : null}
 
 								<Field name="brand" placeholder="Brand"  onKeyUp={(e)=> setBrand(e.target.value)}/>
 								{errors.brand && touched.brand ? <div className='error'>{errors.brand}</div> : null}
 
 								<Field name="quantity" placeholder="Quantity" type="number" onKeyUp={(e)=> setQuantity(e.target.value)}/>
 
-								{/* <Field id="color" name="color" as={Select} options={colorOptions} placeholder="Select Color" onChange={(e, selected) => setFieldValue("industry", selected.value)}/>
-								<div>
-									{touched.color && errors.color
-									? errors.color
-									: null}
-								</div> */}
-
 								<Field name="category" placeholder="Category" onKeyUp={(e)=> setCategory(e.target.value)}/>
-								{errors.category && touched.category ? (
-									<div className='error'>{errors.category}</div>
-								) : null}
+								{errors.category && touched.category ? (<div className='error'>{errors.category}</div>) : null}
 
-								<Field name="avatar" type="file" placeholder="uplaod Image" onChange={(e)=> fileHanlde(e)}/>
-								{/* {errors.filePath && touched.filePath ? (
-									<div className='error'>{errors.filePath}</div>
-								) : null} */}
+								<Field name="avatar" type="file" placeholder="uplaod Image" onChange={(e)=> fileUpload(e)}/>
+								{/* {errors.filePath && touched.filePath ? (<div className='error'>{errors.filePath}</div>) : null} */}
 
 								<button type="submit">Save</button>
 							</Form>

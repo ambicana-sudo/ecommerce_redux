@@ -48,7 +48,7 @@ const ProductBox = (props)=>{
 				return(
 					<div className="product-list" key={item.id}>
 						<div className="product-image">
-							<img src={Image} alt=""/>
+							<img src={require('../../../../'+item.filePath)} alt=""/>
 						</div>
 
 						<div className="product-info">
