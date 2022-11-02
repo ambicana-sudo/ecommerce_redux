@@ -9,7 +9,6 @@ const Search = ()=>{
     const [products, setProducts] = useState([])
     const [filterProduct, setFilterProduct] = useState([])
 	const [searchKey, setSearchKey] = useState('')
-    console.log(products)
 
     const fetchList = () => {
         fetch(`http://localhost:3001/products?search=${searchKey}`)
@@ -22,9 +21,7 @@ const Search = ()=>{
     },[])
 
     const filterHandle = (value)=>{
-        // const newProducts = [...products]
         const newFilterdItem = products.filter((item)=>{
-            console.log(newFilterdItem)
             return item.name.toLowerCase().includes(value.toLowerCase()) 
             // return searchTerm && productName.includes(searchKey) && productName !== searchTerm
         })
