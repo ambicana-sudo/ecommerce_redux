@@ -40,6 +40,11 @@ const ProductBox = (props)=>{
 	};
 
 	return(
+		<>
+		<div className='loader-item'>
+			<div class="loader loader--1"></div>
+		</div>
+		
 		<div className="product">
 			{props.products.map((item)=>{
 				const {name, price,category,isLiked} = item;
@@ -47,10 +52,10 @@ const ProductBox = (props)=>{
 				// console.log(item.filePath)
 				return(
 					
-					<div className="product-list" key={item.id}>
+					<div className="product-list">
 						<Link to={`/product/${item._id}`}>
 							<div className="product-image">
-								<img src={require('../../uploads/a.jpg')} alt=""/>
+								<img src={require('../../uploads/' + item.filePath)} alt=""/>
 							</div>
 
 							<div className="product-info">
@@ -76,6 +81,7 @@ const ProductBox = (props)=>{
 				)
 			})}
 		</div>
+		</>
 	)
 }
 export default ProductBox
