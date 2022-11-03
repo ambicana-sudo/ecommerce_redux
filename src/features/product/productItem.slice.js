@@ -1,6 +1,6 @@
 import { createSlice} from "@reduxjs/toolkit";
 // import { useEffect } from "react";
-// import { axios } from "axios";
+// import axios  from "axios";
 
 // const {data} = axios.get("/products");
 // console.log(data)
@@ -23,18 +23,18 @@ export const initialState = {
     reducers: {
         productData: (state, actions) => {
             state.loading= false
-            state.productItems= actions.payload.productItems
+            state.productItems= actions.payload
         },
 
-        // loadingCase: (fetchProduct, (state, actions)=>{
-        //     state.loading = true
-        // }),
+        loadingCase: (state, actions)=>{
+            state.loading = true
+        },
 
-        // errorCase: (fetchProduct, (state, actions)=>{
-        //     state.loading= false
-        //     state.productItems= []
-        //     state.error= actions.error.message
-        // })
+        errorCase: (state, actions)=>{
+            state.loading= false
+            state.productItems= []
+            state.error= actions.error.message
+        }
     }
  })
 

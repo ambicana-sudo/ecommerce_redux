@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const ProductListing = ()=>{
     const test = useSelector(state=>state.product)
     const dispatch = useDispatch()
+    console.log(test)
 
     // const getProduct = ()=> {
     //     dispatch(productData())
