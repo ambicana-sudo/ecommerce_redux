@@ -41,9 +41,9 @@ const ProductBox = (props)=>{
 
 	return(
 		<>
-		<div className='loader-item'>
+		{/* <div className='loader-item'>
 			<div class="loader loader--1"></div>
-		</div>
+		</div> */}
 		
 		<div className="product">
 			{props.products.map((item)=>{
