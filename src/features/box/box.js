@@ -5,7 +5,7 @@ import {changeWidth} from "./box.slice";
 const Box = () => {
     const {width, backgroundColor, padding} =useSelector(state=>state.box)
     const dispatch = useDispatch()
-  return (
+  return (  
       <>
     <div style={{
         width: width,
@@ -14,7 +14,7 @@ const Box = () => {
     }}>
  
     </div>
-    <input placeholder="width"
+    <input placeholder="width"  
      onKeyUp={(e)=>dispatch(changeWidth(e.target.value))}/>
       <input placeholder="height"
   />

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import Image from '../images/default-thumbnail.jpg'
-import { increment, decrement } from '../features/counter/counter.slice';
+import { increament, decreament } from '../features/counter/counter.slice';
 import { useDispatch, useSelector} from 'react-redux';
 
 const Wishlist = ()=>{
@@ -16,11 +16,11 @@ const Wishlist = ()=>{
 	console.log(number)
 	
 	const onDownClick = () => {
-		dispatch(decrement());
+		dispatch(decreament());
 	};
 
 	const onUpClick = () => {
-		dispatch(increment());
+		dispatch(increament());
 	};
 
 	const calculateItems = ()=>{

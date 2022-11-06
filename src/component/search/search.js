@@ -22,7 +22,7 @@ const Search = ()=>{
 
     const filterHandle = (value)=>{
         const newFilterdItem = products.filter((item)=>{
-            return item.name.toLowerCase().includes(value.toLowerCase()) 
+            return (item.name.toLowerCase() || item.category.toLowerCase()).includes(value.toLowerCase()) 
             // return searchTerm && productName.includes(searchKey) && productName !== searchTerm
         })
 
@@ -35,8 +35,8 @@ const Search = ()=>{
     }
 
     const searchHandle = async (value)=>{
+        // console.log('search', value)
 
-        console.log('search', value)
         setSearchKey(value)
 
         if(value){
@@ -62,7 +62,7 @@ const Search = ()=>{
                 <ul>
                     {filterProduct.slice(0,10).map((item)=>{
                         return(
-                            <li onClick={()=> searchHandle(item.name)}>{item.name}</li>
+                            <li onClick={()=> null}>{item.name}</li>
                         )
                     })}
                 </ul>

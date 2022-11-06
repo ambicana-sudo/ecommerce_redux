@@ -7,20 +7,10 @@ import Search from './search/search';
 
 
 const Header = ()=>{
-	const { count } = useSelector((state) => state.count);
-	// const [wishCount, setWishCout] = useState({count})
+	// const { count } = useSelector((state) => state.count);
 
-	// console.log(wishCount)
-
-	// useEffect(()=>{
-	// 	fetch('http://localhost:3000/wishlist')
-	// 	.then(res => {
-	// 		return res.json()
-	// 	})
-	// 	.then(data => {
-	// 		setWishCout(data)
-	// 	})
-	// },[])
+	const { cartItems, likedItems } = useSelector((state) => state.count);
+	console.log(cartItems)
 
 	return(
 		<div className='header-section'>
@@ -43,11 +33,11 @@ const Header = ()=>{
 							<li><FontAwesomeIcon icon={faUser} /></li>
 							<li>
 								<Link to="/cart"><FontAwesomeIcon icon={faCartShopping} /></Link>
-								<span>{count}</span>
+								<span>{cartItems.length}</span>
 							</li>
 							<li>
 								<Link to="/wishlist"><FontAwesomeIcon icon={faHeart} /></Link>
-								<span>{count}</span>
+								<span>{likedItems.length}</span>
 							</li>
 						</ul>
 					</div>

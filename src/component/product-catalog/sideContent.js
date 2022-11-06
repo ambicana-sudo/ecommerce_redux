@@ -2,67 +2,31 @@ import React from 'react';
 import {useState, useEffect} from 'react'
 // import Categories from "./categories-list"
 
-const SideContent = ()=>{
-	const [products, setProducts] = useState([])
-
-	// const categoryList = [
-	// 	...new Set(
-	// 		products.map((item)=>{
-	// 			return item.category
-	// 		})
-	// 	)
-	// ];
-
-
-	const fetchList = () => {
-		fetch('http://localhost:3001/products').then(res=>res.json())
-				.then(data=> setProducts(data.productList))
-	}
-	useEffect(()=>{
-		fetchList()
-	},[])
-
-	const filterProduct = (category)=>{
-		let newProducts = [...products]
-
-		let filteredItem = newProducts.filter((item)=>{
-			return item.category === category
-		})
-		setProducts(filteredItem)
-	}
+const SideContent = (props)=>{
+	
 	return(
 		<>
 			<div id="sideContent">
 				<div className="category-block">
 					<h3>Categories</h3> 
-					<ul>
-						<li onClick={()=> filterProduct('Clothing')}>Clothing</li>
-						<li onClick={()=> filterProduct('Accesories')}>Accesories</li>
-						<li onClick={()=> filterProduct('Shoe')}>Shoe</li>
-					</ul>
+					<div className='category-list'>
+						{props.category.map((item)=>{
+							return(
+								<button className='category-name'>{item}</button>
+							)
+						})}
+					</div>
 				</div>
 				
 				<div className="brand-block">
 					<h3>Brands</h3>
 
-					<div className="category-list">
-						<div className="filter">
-							<div className="form-group">
-								<label><input type="radio" name="radio" checked/><span>All </span></label>
-							</div>
-							<div className="form-group">
-								<label><input type="radio" name="radio"/><span>Nike</span></label>
-							</div>
-							<div className="form-group">
-								<label><input type="radio" name="radio"/><span>Addidas</span></label>
-							</div>
-							<div className="form-group">
-								<label><input type="radio" name="radio"/><span>Random</span></label>
-							</div>
-							<div className="form-group">
-								<label><input type="radio" name="radio"/><span>Local</span></label>
-							</div>
-						</div>  
+					<div className='brand-list'>
+						{props.brand.map((item)=>{
+							return(
+								<button className='brand-name'>{item}</button>
+							)
+						})}
 					</div>
 				</div>
 

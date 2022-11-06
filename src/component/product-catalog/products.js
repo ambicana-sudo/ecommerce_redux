@@ -1,29 +1,26 @@
-import React from 'react'
-import Image from '../../images/default-thumbnail.jpg'
+import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import { increment, decrement } from '../../features/counter/counter.slice';
+import { addCartItems, addLikedItems } from '../../features/counter/counter.slice';
 import { useDispatch} from 'react-redux';
 import {Link} from "react-router-dom"
 // import { unstable_composeClasses } from '@mui/material';
+import Loader from '../loader';
 
 const ProductBox = (props)=>{
-	
+	const [cartList, setCartList] = useState()
 	const dispatch = useDispatch();
 
-	const onDownClick = () => {
-		dispatch(decrement());
-	};
+	const addToCart = (product)=>{
+		dispatch(addCartItems(product))
+	}
+	// const addToWish = (product)=>{
+	// 	dispatch(addLikedItems(product))
+	// }
 
-	const onUpClick = () => {
-		dispatch(increment());
-	};
-
-	const likeHandle = async(id,isLiked) => {
+	const likeHandle = async(id,isLiked,product) => {
 		if(!isLiked){
-			dispatch(increment());
-		}else{
-			dispatch(decrement());
+			dispatch(addLikedItems(product))
 		}
 		
 		// console.log(id)
@@ -41,18 +38,14 @@ const ProductBox = (props)=>{
 
 	return(
 		<>
-		{/* <div className='loader-item'>
-			<div class="loader loader--1"></div>
-		</div> */}
-		
 		<div className="product">
-			{props.products.map((item)=>{
+			{props.products.length > 0 ? props.products.map((item)=>{
 				const {name, price,category,isLiked} = item;
 				// const id = item._id
 				// console.log(item.filePath)
 				return(
 					
-					<div className="product-list">
+					<div className="product-list" key={item.name}>
 						<Link to={`/product/${item._id}`}>
 							<div className="product-image">
 								<img src={require('../../uploads/' + item.filePath)} alt=""/>
@@ -65,21 +58,21 @@ const ProductBox = (props)=>{
 								{/* <p className="product-price"><em>{item._id}</em></p> */}
 							</div>
 						</Link>
+
 						<div className="product-btn">
-							<button className="wishlist" onClick={()=> likeHandle(item._id, isLiked)}>
+							<button className="wishlist" onClick={()=> likeHandle(item._id, isLiked, item)}>
 								<FontAwesomeIcon icon={faHeart} 
 								style={{color: isLiked ? 'red' : 'black'}} />
 							</button>
 						
-							<button className="cart-btn" onClick={()=> {onUpClick()}}>
+							<button className="cart-btn" onClick={()=> {addToCart(item)}}>
 								<FontAwesomeIcon icon={faCartShopping} />
 							</button>
 						</div>
 						{/* <div className={hasRecentlyAdded() ? 'tag' : null}>New</div> */}
 					</div>
-					
 				)
-			})}
+			}) : 'loading...'}
 		</div>
 		</>
 	)
