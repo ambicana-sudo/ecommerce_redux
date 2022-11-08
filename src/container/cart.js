@@ -1,41 +1,73 @@
 import React from 'react'
 // import {useState} from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { increament, decreament } from "../features/counter/counter.slice";
 
 const Cart = ()=>{
     const { cartItems} = useSelector((state) => state.count);
-    // const [cartList, setCartList] = useState()
+
+	const dispatch = useDispatch();
+    const { count } = useSelector((state) => state.count);
+
+    const onUpClick = () => {
+        dispatch(increament());
+    };
+    const onDownClick = () => {
+        dispatch(decreament());
+    };
+
     return(
         <div className='cart-container'>
             <h1>Cart</h1>
             <div className="product wished-product">
-			{cartItems.length > 0 ? cartItems.map((item)=>{
-				const {name, category, price} = item;
-					return(
-						<div className="product-list">
-							<div className="product-image">
-								<img src={Image} alt=""/>
-							</div>
+				<table>
+					<thead>
+						<tr>
+							<th>Product</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th>Total Price</th>
+							<th>Remove</th>
+						</tr>
+					</thead>
 
-							<div className="product-info">
-								<h3 className="product-name">{name}</h3>
-								<small className='product-cat'>{category}</small>
-								<p className="product-price"><em>${price}</em></p>
-							</div>
-
-							<div className="product-btn">
-								<button className="cart-btn">
-									<FontAwesomeIcon icon={faXmark} />
-								</button>
-							</div>
-						</div>
-					)
-			}) : 'product not found'}
-		</div>
+					<tbody>
+					{cartItems.length > 0 ? cartItems.map((item)=>{
+						const {name, price} = item;
+                        return(
+                            <tr>
+                                <td>
+                                    <div className="product-image">
+                                    {item.filePath ? <img src={require('../uploads/' + item.filePath)} alt=""/> : 'image not found'}
+                                    </div>
+                                    <h3 className="product-name">{name}</h3>
+                                </td>
+                                <td>
+                                    <p className="product-price"><em>${price}</em></p>
+                                </td>
+                                <td>
+                                    <div className='quantity'>
+                                        <button onClick={(e)=> onUpClick()}>+</button>
+                                        <p className='num'>{count}</p>
+                                        <button onClick={(e)=>onDownClick()}>-</button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p className='total-price'></p>
+                                </td>
+                                <td>
+                                <FontAwesomeIcon icon={faXmark} />
+                                </td>
+                            </tr>
+                        )
+					}) : 'product not found'}
+					</tbody>
+				</table>
+		    </div>
         </div>
     )
 }
 
-export default Cart
+ export default Cart

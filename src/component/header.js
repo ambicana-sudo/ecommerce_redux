@@ -10,7 +10,7 @@ const Header = ()=>{
 	// const { count } = useSelector((state) => state.count);
 
 	const { cartItems, likedItems } = useSelector((state) => state.count);
-	console.log(cartItems)
+	// console.log(cartItems)
 
 	return(
 		<div className='header-section'>

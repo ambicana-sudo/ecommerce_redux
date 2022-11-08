@@ -1,22 +1,18 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { addCartItems, addLikedItems } from '../../features/counter/counter.slice';
 import { useDispatch} from 'react-redux';
 import {Link} from "react-router-dom"
 // import { unstable_composeClasses } from '@mui/material';
-import Loader from '../loader';
+// import Loader from '../loader';
 
 const ProductBox = (props)=>{
-	const [cartList, setCartList] = useState()
 	const dispatch = useDispatch();
 
 	const addToCart = (product)=>{
 		dispatch(addCartItems(product))
 	}
-	// const addToWish = (product)=>{
-	// 	dispatch(addLikedItems(product))
-	// }
 
 	const likeHandle = async(id,isLiked,product) => {
 		if(!isLiked){
