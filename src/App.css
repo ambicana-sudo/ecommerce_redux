@@ -563,7 +563,7 @@ button.cart-btn img{
   position: absolute;
   height: 100%;
   width: 100%;
-  background: rgba(0,0,0,.2);
+  background: rgba(0,0,0,.5);
   left: -100%;
   visibility: hidden;
   opacity: 0;
@@ -865,9 +865,9 @@ table:not(.variations) {
 }
 
 thead{
-  background: #19246c;
+  background: #f1f1f1;
     text-transform: uppercase;
-    color: #fff;
+    color: #000;
     font-weight: 400;
 }
 
