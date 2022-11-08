@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
   count: 0,
-  cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [],
+  cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
   likedItems: []
@@ -27,17 +27,7 @@ const countSlice = createSlice({
     },
 
     addCartItems: (state,action)=>{
-
-      const indexItem =  state.cartItems.findIndex((item)=> item.id === action.payload.id);
-      console.log(indexItem)
-      if(indexItem >= 0){
-          state.cartItems[indexItem].cartQuantity += 1
-      }else{
-        const tempItems = {...action.payload, cartQuantity: 1}
-        state.cartItems.push(tempItems)
-      }
-      
-      localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+      state.cartItems.push(action.payload)
       console.log(state.cartItems)
     },
 
