@@ -36,7 +36,7 @@ const ProductDetail = ()=>{
     useEffect(()=>{
         fetchList()
     }, [])
-
+// console.log('../uploads/' + product.filePath)
     return(
         <>
             <section id="page-wrap">
@@ -44,6 +44,7 @@ const ProductDetail = ()=>{
                     <div className="product-detail">
                         <div className="product-image">
                             {/* <img src={require('../uploads/' + product.filePath)} alt=""/> */}
+                            {product.filePath ? <img src={require('../uploads/' + product.filePath)} alt=""/> : 'image not found'}
                         </div>
 
                         <div className="product-info">
