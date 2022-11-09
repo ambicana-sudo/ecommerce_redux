@@ -28,9 +28,9 @@
   - [ ] Total no. of Items and Price calculation
   
 ## Features
-[] Admin Dashboard
-[] Add Review and Rating
-[] Filter products by size, color, price
+- [] Admin Dashboard
+- [] Add Review and Rating
+- [] Filter products by size, color, price
 
 ## Installation
 To run this project locally, download the code, navigate to that folder and then run the following command
