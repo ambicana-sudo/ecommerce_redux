@@ -25,6 +25,7 @@
   - [ ] Filter Products by Category and Brand
   - [ ] Add and Remove Products from Cart
   - [ ] Add and Remove Products from Wishlist
+  - [ ] Total no. of Items and Price calculation
   
 ## Features
 [] Admin Dashboard
