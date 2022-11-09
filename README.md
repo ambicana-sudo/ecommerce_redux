@@ -1,15 +1,20 @@
-# Getting Started with Ecommerce App
+# Getting Started with Ecommerce Website
 
 ## Tech Stack
-* React
-* Routes
+* React JS
+* React Router
 * Redux
 * Material Design
-* Ant Design
-* Formik & Yup for Form Validation
-* Bycrypt
+* Ant Design & Material UI
+* Formik & Yup for Form Validation in React
+* Mongo DB
+* Node JS
+* Encryption using Bcrypt
 
 ## Features
+- [ ] Users
+  - [x] Login
+  - [x] Registration
 - [ ] Search Product by Category
 - [x] Pagination
 - [x] Page Size
