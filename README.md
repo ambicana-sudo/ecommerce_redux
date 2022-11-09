@@ -10,6 +10,7 @@
 * Mongo DB, Express
 * Node JS
 * Password encryption using Bcrypt
+* JsonWebToken Authentication
 * Multer for file upload feature
 
 ## Features
