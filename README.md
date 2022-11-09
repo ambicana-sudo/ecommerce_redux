@@ -28,7 +28,7 @@
   - [ ] Add and Remove Products from Wishlist
   - [ ] Total no. of Items and Price calculation
   
-## Features
+## Future Features
 - [ ] Admin Dashboard
 - [ ] Add Review and Rating
 - [ ] Filter products by size, color, price
