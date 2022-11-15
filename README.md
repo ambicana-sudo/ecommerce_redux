@@ -1,22 +1,39 @@
-# Getting Started with Ecommerce App
+# Getting Started with Ecommerce Website
 
 ## Tech Stack
-* React
-* Routes
+* React JS
+* React Router
 * Redux
 * Material Design
-* Ant Design
-* Formik & Yup for Form Validation
-* Bycrypt
+* Ant Design & Material UI
+* Formik & Yup for Form Validation in React
+* Mongo DB, Express
+* Node JS
+* Password encryption using Bcrypt
+* JsonWebToken Authentication
+* Multer for file upload feature
 
 ## Features
-- [ ] Search Product by Category
-- [x] Pagination
-- [x] Page Size
-- [x] Add Products
-- [ ] Add New Product Tag
-- [ ] Cart
-- [ ] Wishlist
-- [ ] Filter Products by Category and Brand
+- [x] Users
+  - [x] Login
+  - [x] Registration
+- [ ] Products
+  - [ ] Search Product by Category
+  - [x] Pagination
+  - [x] Page Size
+  - [x] Add Products
+  - [ ] Add New Product Tag
+  - [ ] Filter Products by Category and Brand
+  - [ ] Add and Remove Products from Cart
+  - [ ] Add and Remove Products from Wishlist
+  - [ ] Total no. of Items and Price calculation
+  
+## Future Features
+- [ ] Admin Dashboard
+- [ ] Add Review and Rating
+- [ ] Filter products by size, color, price
 
+## Installation
+To run this project locally, download the code, navigate to that folder and then run the following command
+npm install
 
