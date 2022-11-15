@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import logger from 'redux-logger'
-import boxSlice from "./features/box/box.slice";
-import productItemSlice from "./features/product/productItem.slice";
-import counterSlice from './features/counter/counter.slice'
+import boxSlice from "./redux/box/box.slice";
+import productItemSlice from "./redux/product/productItem.slice";
+import counterSlice from './redux/counter/counter.slice'
 
 const reducer = combineReducers({
   count: counterSlice,

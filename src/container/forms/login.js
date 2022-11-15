@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import{Link} from "react-router-dom"
 import React from 'react';
 import { message } from 'antd';
@@ -14,7 +14,14 @@ const Login = ()=>{
 	const [password, setPassword] = useState("")
 	const [passErr, setPassErr] = useState("")
 	const [passType, setPassType] =useState("password")
+
 	const navigate = useNavigate()
+	useEffect(()=>{
+        const auth = localStorage.getItem("user")
+        if(auth){
+            navigate('/home')
+        }
+    })
 
 	const togglePassword = ()=>{
 		if(passType === "password"){
@@ -55,6 +62,8 @@ const Login = ()=>{
 						message.info('Invalid user or password')
 					}else{
 						message.info(`You're logged In`)
+						localStorage.setItem("user", JSON.stringify(data))
+						console.log(data)
 						navigate('/home')
 					}
 				})

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { increament, decreament } from "../features/counter/counter.slice";
+import { increament, decreament } from "../redux/counter/counter.slice";
 
 const ProductDetail = ()=>{
     

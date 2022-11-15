@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom'
 import Header from "../component/header";
 import {Helmet} from 'react-helmet-async'
-import { increment, decrement } from '../features/counter/counter.slice';
+import { increment, decrement } from '../redux/counter/counter.slice';
 import { useDispatch , useSelector} from 'react-redux';
 
 const ProductDetail = ()=>{

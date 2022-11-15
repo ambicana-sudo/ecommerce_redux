@@ -5,38 +5,26 @@ import { message } from 'antd';
 import 'antd/dist/antd.css';
 import React from 'react';
 
-import DemoAddProduct from './demo-product-form';
-
 const AddProduct = () => {
-	// <DemoAddProduct/>
-	const [productName, setProductName] = useState("")
-	const [productId, setProductId] = useState(null)
-	const [quantity, setQuantity] = useState(null)
-	const [brand, setBrand] = useState("")
-	const [price, setPrice] = useState(null)
-	const [category, setCategory] = useState()
 	const [file, setFile] = useState('')
 
-	const fileUpload = (e)=>{
-		// console.log(event.target.files[0])
-        // console.log(URL.createObjectURL(event.target.files[0]))
-        const imgURL = e.target.files[0]
-        // console.log(imgURL)
-        setFile(imgURL)
+    const fileUpload = (e)=>{
+		const imgUrl = (e.target.files[0])
+        setFile(imgUrl)
 	}
-	
-	const saveProducts = ()=>{
+
+    const saveProducts = (values)=>{
 		const date = Date.now()
 
 		// const url = URL.createObjectURL(e.target.files[0])
 		const formData = new FormData();
 		formData.append('avatar', file)
-		formData.append('name', productName)
-		formData.append('id', productId)
-		formData.append('quantity', quantity)
-		formData.append('category', category)
-		formData.append('price', price)
-		formData.append('brand', brand)
+		formData.append('name', values.productName)
+		formData.append('id', values.productId)
+		formData.append('quantity', values.quantity)
+		formData.append('category', values.category)
+		formData.append('price', values.price)
+		formData.append('brand', values.brand)
 		formData.append('created', date)
 		formData.append('isLiked', false)
 
@@ -51,72 +39,74 @@ const AddProduct = () => {
 			message.info('Product has been saved')
 		}
   	}
-  
-	const SignupSchema = Yup.object().shape({
+
+    const SignUpSchema = Yup.object().shape({
 		productName: Yup.string()
-			.required('Name is Required'),
-		price: Yup.number()
-			.required("* Price is Required!!")
-			.positive("* Must be positive number!!")
-			.integer("* Must be Integer value!!"),
-		brand: Yup.string().required('Brand is Required'),
+			.required('Required'),
+		price: Yup.string()
+			.required('Required'),
+		brand: Yup.string().required('Required'),
 	});
 
-	return(
-		<>
-			<div className='form' id="add-product">
-				<div className='form-head'>
-					<h1>Add Products</h1>
-					<p>Fillup the form to add new products.</p>
-				</div>
-				
-				<div className='form-body'>
-					<div className='animate'>
-						
-						<Formik
-							initialValues={{
-								productName: '',
-								price: '',
-								brand: '',
-								quantity: '',
-								category: '',
-								filePath: '',
-							}}
-							validationSchema={SignupSchema}
-							onSubmit={values => {
-								saveProducts()
-							}}
-						>
-						{({ errors, touched }) => (
-							<Form>
-								<Field name="productName" placeholder="Product Name" onKeyUp={(e)=> setProductName(e.target.value)}/>
-								{errors.productName && touched.productName ? (<div className='error'>{errors.productName}</div>) : null}
+   
+    return(
+        <>
+            <div className='form' id="add-product">
+                <div className='form-head'>
+                    <h1>Add Products</h1>
+                    <p>Fillup the form to add new products.</p>
+                </div>
 
-								<Field name="productId" placeholder="Product Id" onKeyUp={(e)=> setProductId(e.target.value)}/>
-								
-								<Field name="price"  placeholder="Price" onKeyUp={(e)=> setPrice(e.target.value)}/>
-								{errors.price && touched.price ? (<div className='error'>{errors.price}</div>) : null}
+                <div className='form-body'>
+                    <div className='animate'>
+                        <Formik
+                            initialValues = {
+                                {
+                                    productName: '',
+                                    price: '',
+                                    brand: '',
+                                    quantity: '',
+                                    category: '',
+                                    filePath: '',
+                                }
+                            }
+                            validationSchema = {SignUpSchema}
+                            onSubmit = {values => {
+                                saveProducts(values)
+                            }}
+                        >
 
-								<Field name="brand" placeholder="Brand"  onKeyUp={(e)=> setBrand(e.target.value)}/>
-								{errors.brand && touched.brand ? <div className='error'>{errors.brand}</div> : null}
+                        { ({values, errors, touched, handleChange, handleBlur}) => (
+                            <Form>
+                                <Field name="productName" placeholder="Product Name" value={values.productName} onChange={handleChange} onBlur={handleBlur} />
+                                {errors.productName && touched.firstproductNamename ? (<div>{errors.productName}</div>) : null}
 
-								<Field name="quantity" placeholder="Quantity" type="number" onKeyUp={(e)=> setQuantity(e.target.value)}/>
+                                <Field name="productId" placeholder="Product Id" value={values.productId} onChange={handleChange} onBlur={handleBlur} />
+                                {errors.productId && touched.lastproductIdname ? (<div>{errors.productId}</div>) : null}
 
-								<Field name="category" placeholder="Category" onKeyUp={(e)=> setCategory(e.target.value)}/>
-								{errors.category && touched.category ? (<div className='error'>{errors.category}</div>) : null}
+                                <Field name="price" placeholder="Product Price" value={values.price} onChange={handleChange} onBlur={handleBlur} />
+                                {errors.price && touched.price ? (<div>{errors.price}</div>) : null}
 
-								<Field name="avatar" type="file" placeholder="uplaod Image" onChange={(e)=> fileUpload(e)}/>
-								{/* {errors.filePath && touched.filePath ? (<div className='error'>{errors.filePath}</div>) : null} */}
+                                <Field name="brand" placeholder="Brand Name" value={values.brand} onChange={handleChange} onBlur={handleBlur} />
+                                {errors.brand && touched.brand ? (<div>{errors.brand}</div>) : null}
 
-								<button type="submit">Save</button>
-							</Form>
-						)}
-						</Formik>
-					</div>	
-				</div>
-			</div>
-		</>
-	)
+                                <Field name="quantity" placeholder="Product Quantity" value={values.quantity} onChange={handleChange} onBlur={handleBlur} />
+                                {errors.quantity && touched.quantity ? (<div>{errors.quantity}</div>) : null}
+
+                                <Field name="category" placeholder="Product Category" value={values.category} onChange={handleChange} onBlur={handleBlur} />
+                                {errors.category && touched.category ? (<div>{errors.category}</div>) : null}
+
+                                <Field name="avatar" type="file" placeholder="uplaod Image" onChange={(e)=> fileUpload(e)}/>
+
+                                <button type="submit" className="btn btn-success">Submit</button>
+                            </Form>
+                        )}
+                        </Formik>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default AddProduct;

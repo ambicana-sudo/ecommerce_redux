@@ -3,7 +3,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { increament, decreament } from "../features/counter/counter.slice";
+import { increament, decreament } from "../redux/counter/counter.slice";
 
 const Cart = ()=>{
     const { cartItems} = useSelector((state) => state.count);

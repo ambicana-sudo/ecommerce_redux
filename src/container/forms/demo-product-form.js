@@ -13,20 +13,20 @@ const DemoAddProduct = () => {
         setFile(imgUrl)
 	}
 
-    const saveProducts = ()=>{
+    const saveProducts = (values)=>{
 		const date = Date.now()
 
 		// const url = URL.createObjectURL(e.target.files[0])
 		const formData = new FormData();
-		// formData.append('avatar', file)
-		// formData.append('name', values.productName)
-		// formData.append('id', values.productId)
-		// formData.append('quantity', values.quantity)
-		// formData.append('category', values.category)
-		// formData.append('price', values.price)
-		// formData.append('brand', values.brand)
-		// formData.append('created', date)
-		// formData.append('isLiked', false)
+		formData.append('avatar', file)
+		formData.append('name', values.productName)
+		formData.append('id', values.productId)
+		formData.append('quantity', values.quantity)
+		formData.append('category', values.category)
+		formData.append('price', values.price)
+		formData.append('brand', values.brand)
+		formData.append('created', date)
+		formData.append('isLiked', false)
 
 		fetch('http://localhost:3001/products', {
 			method: 'POST',
@@ -99,28 +99,28 @@ const DemoAddProduct = () => {
                             }
                             validationSchema = {SignUpSchema}
                             onSubmit = {values => {
-                                saveProducts()
+                                saveProducts(values)
                             }}
                         >
 
-                        { ({values, errors, touched, handleChange}) => (
+                        { ({values, errors, touched, handleChange, handleBlur}) => (
                             <Form>
-                                <Field name="productName" placeholder="Product Name" value={values.productName} onChange={handleChange} />
+                                <Field name="productName" placeholder="Product Name" value={values.productName} onChange={handleChange} onBlur={handleBlur} />
                                 {errors.productName && touched.firstproductNamename ? (<div>{errors.productName}</div>) : null}
 
-                                <Field name="productId" placeholder="Product Id" value={values.productId} onChange={handleChange} />
+                                <Field name="productId" placeholder="Product Id" value={values.productId} onChange={handleChange} onBlur={handleBlur} />
                                 {errors.productId && touched.lastproductIdname ? (<div>{errors.productId}</div>) : null}
 
-                                <Field name="price" placeholder="Product Price" value={values.price} onChange={handleChange} />
+                                <Field name="price" placeholder="Product Price" value={values.price} onChange={handleChange} onBlur={handleBlur} />
                                 {errors.price && touched.price ? (<div>{errors.price}</div>) : null}
 
-                                <Field name="brand" placeholder="Brand Name" value={values.brand} onChange={handleChange} />
+                                <Field name="brand" placeholder="Brand Name" value={values.brand} onChange={handleChange} onBlur={handleBlur} />
                                 {errors.brand && touched.brand ? (<div>{errors.brand}</div>) : null}
 
-                                <Field name="quantity" placeholder="Product Quantity" value={values.quantity} onChange={handleChange} />
+                                <Field name="quantity" placeholder="Product Quantity" value={values.quantity} onChange={handleChange} onBlur={handleBlur} />
                                 {errors.quantity && touched.quantity ? (<div>{errors.quantity}</div>) : null}
 
-                                <Field name="category" placeholder="Product Category" value={values.category} onChange={handleChange} />
+                                <Field name="category" placeholder="Product Category" value={values.category} onChange={handleChange} onBlur={handleBlur} />
                                 {errors.category && touched.category ? (<div>{errors.category}</div>) : null}
 
                                 <Field name="avatar" type="file" placeholder="uplaod Image" onChange={(e)=> fileUpload(e)}/>

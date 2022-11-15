@@ -1,13 +1,20 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faCartShopping,faUser } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faCartShopping,faUser, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux';
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import Search from './search/search';
 
 
 const Header = ()=>{
-	// const { count } = useSelector((state) => state.count);
+	const auth = localStorage.getItem("user")
+	const navigate = useNavigate()
+
+	// Function for logout
+	const userLogout = ()=>{
+		localStorage.clear()
+		navigate('/home')
+	}
 
 	const { cartItems, likedItems } = useSelector((state) => state.count);
 	// console.log(cartItems)
@@ -30,7 +37,6 @@ const Header = ()=>{
 					<div className="right_menu">
 						<ul className="nav">
 							<li><Search/></li>
-							<li><FontAwesomeIcon icon={faUser} /></li>
 							<li>
 								<Link to="/cart"><FontAwesomeIcon icon={faCartShopping} /></Link>
 								<span>{cartItems.length}</span>
@@ -39,6 +45,20 @@ const Header = ()=>{
 								<Link to="/wishlist"><FontAwesomeIcon icon={faHeart} /></Link>
 								<span>{likedItems.length}</span>
 							</li>
+							
+							{auth ? 
+								<>
+									<li>
+										<Link to="/home" onClick={()=> userLogout()}>Logout ({JSON.parse(auth).name})</Link>
+									</li>
+									<li className='profile'>
+										<Link to='/profile'><FontAwesomeIcon icon={faUser} /></Link>
+									</li>
+								</> : 
+								<li className='login'>
+									<Link to='/'><FontAwesomeIcon icon={faArrowRightToBracket} /></Link>
+								</li>
+							}
 						</ul>
 					</div>
 				</header>

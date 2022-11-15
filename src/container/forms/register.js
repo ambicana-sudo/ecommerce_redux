@@ -56,6 +56,7 @@ const Login = ()=>{
 						message.info('Invalid')
 					}else{
 						message.info('User has been Registered')
+						
 						setInputName('')
 						setInputEmail('')
 						setPassword('')
@@ -83,7 +84,7 @@ const Login = ()=>{
 							{nameErr ? <span>{nameErr}</span> : null}
 						</div>
 
-						<div className='form-group'>
+							<div className='form-group'>
 							<input placeholder="Email" onKeyUp={(e)=> setInputEmail(e.target.value)}></input>
 							{emailErr ? <span>{emailErr}</span> : null}
 						</div>
