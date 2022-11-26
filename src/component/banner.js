@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from '../images/nike-removebg-preview.png'
-import NewProduct from './new-products'
+import NewProduct from './products/new-products'
 
 const Banner = ()=>{
     return(

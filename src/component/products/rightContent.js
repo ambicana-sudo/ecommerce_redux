@@ -1,5 +1,5 @@
 import Pagination from '@mui/material/Pagination';
-import ProductBox from './products';
+import ProductBox from './productBox';
 import { useState, useEffect } from "react"
 import React from 'react';
 
@@ -72,7 +72,7 @@ return(
 				<div className='page-size'>
 					
 					<div className='size-option'>
-					<strong>No. of Items:</strong>
+						<strong>No. of Items:</strong>
 						<select onChange={(e)=>{setItemPerPage(e.target.value)}}>
 							<option>6</option>
 							<option>12</option>

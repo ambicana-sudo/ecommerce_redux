@@ -2,7 +2,7 @@ import React from "react";
 import { useState,useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons'
-import Image from '../images/default-thumbnail.jpg'
+import Image from '../../images/default-thumbnail.jpg'
 
 const NewProduct = ()=>{
 	const [products, setProducts] = useState([])
@@ -27,7 +27,7 @@ const NewProduct = ()=>{
 					return(
 						<div className="new-items" key={item.id}>
 							<div className="product-image">
-								<img src={Image} alt=""/>
+								{/* <img src={Image} alt=""/> */}
 							</div>
 
 							<div className="product-info">

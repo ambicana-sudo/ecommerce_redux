@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping,faUser, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux';
-import {Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Search from './search/search';
 
 
@@ -16,14 +16,14 @@ const Header = ()=>{
 		navigate('/home')
 	}
 
-	const { cartItems, likedItems } = useSelector((state) => state.count);
+	const { cartItems, likedItems } = useSelector((state) => state.cart);
 	// console.log(cartItems)
 
 	return(
 		<div className='header-section'>
 			<div className="container">
 				<header>
-					<div className="logo">Logo</div>
+					<div className="logo"><h3>ONLINE SHOPPING</h3></div>
 
 					<div className="navigation">
 						<ul className="nav">

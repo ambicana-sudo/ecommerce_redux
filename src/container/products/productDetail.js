@@ -1,20 +1,20 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { increament, decreament } from "../redux/counter/counter.slice";
+import { useDispatch } from "react-redux";
+import { increament, decreaseQuantity } from "../../redux/cart/cart.slice";
+
 
 const ProductDetail = ()=>{
     
     const [product, setProduct] = useState([])
 
     const dispatch = useDispatch();
-    const { count } = useSelector((state) => state.count);
 
     const onUpClick = () => {
         dispatch(increament());
     };
     const onDownClick = () => {
-        dispatch(decreament());
+        dispatch(decreaseQuantity());
     };
 
     const params = useParams();
@@ -44,7 +44,7 @@ const ProductDetail = ()=>{
                     <div className="product-detail">
                         <div className="product-image">
                             {/* <img src={require('../uploads/' + product.filePath)} alt=""/> */}
-                            {product.filePath ? <img src={require('../uploads/' + product.filePath)} alt=""/> : 'image not found'}
+                            {product.filePath ? <img src={require('../../uploads/' + product.filePath)} alt=""/> : 'image not found'}
                         </div>
 
                         <div className="product-info">
@@ -57,7 +57,7 @@ const ProductDetail = ()=>{
 
                             <div className='quantity'>
                                 <button onClick={(e)=> onUpClick()}>+</button>
-                                <p className='num'>{count}</p>
+                                <p className='num'>{product.cartQuantity}</p>
                                 <button onClick={(e)=>onDownClick()}>-</button>
                             </div>
 

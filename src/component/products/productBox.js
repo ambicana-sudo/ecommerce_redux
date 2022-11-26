@@ -1,10 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import { addCartItems, addLikedItems } from '../../redux/counter/counter.slice';
+import { addCartItems, addLikedItems } from '../../redux/cart/cart.slice';
 import { useDispatch} from 'react-redux';
 import {Link} from "react-router-dom"
-// import { unstable_composeClasses } from '@mui/material';
 // import Loader from '../loader';
 
 const ProductBox = (props)=>{

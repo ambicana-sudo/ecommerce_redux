@@ -1,5 +1,5 @@
-import SideContent from "../component/product-catalog/sideContent"
-import RightContent from "../component/product-catalog/rightContent"
+import SideContent from "../../component/products/sideContent"
+import RightContent from "../../component/products/rightContent"
 import React from 'react';
 import {useState, useEffect} from 'react'
 

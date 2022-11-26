@@ -2,7 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
-// import ProductBox from '../product-catalog/products';
+// import ProductBox from '../products/productBox';
 
 
 const Search = ()=>{
