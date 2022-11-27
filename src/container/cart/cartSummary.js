@@ -1,7 +1,10 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { clearCart } from "../../redux/cart/cart.slice";
 // import { totalAmount } from "../../redux/cart/cart.slice";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeftLong} from '@fortawesome/free-solid-svg-icons'
 
 const CartSummary = (props) => {
     const dispatch = useDispatch()
@@ -24,8 +27,8 @@ const CartSummary = (props) => {
                 </div>
 
                 <p>Taxes and shipping calculated at checkout</p>
-                <button>checkout</button>
-					 <p>Continue Shoping</p>
+                <button>Checkout</button>
+				<Link to="/home"><FontAwesomeIcon icon={faArrowLeftLong} /> Continue Shoping</Link>
             </div>
         </div>
     )

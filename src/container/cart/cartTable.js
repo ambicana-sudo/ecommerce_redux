@@ -1,8 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 import {useDispatch} from 'react-redux'
-import { deleteCartItem, addCartItems, decreaseQuantity } from "../../redux/cart/cart.slice";
+import { deleteCartItem, addCartItems, decreaseQuantity } from "../../redux/cart/cart.slice"
+import { Link } from "react-router-dom";
 
 const CartTable = (props) => {
 	const dispatch = useDispatch()
@@ -44,7 +45,7 @@ const CartTable = (props) => {
 								</div>
 							</td>
 							<td>
-								<p className="product-price"><em>${price}</em></p>
+								<p className="product-price">${price}</p>
 							</td>
 							<td>
 								<div className='quantity'>
@@ -63,7 +64,12 @@ const CartTable = (props) => {
 							</td>
 						</tr>
 					)
-				}) : <strong>Your cart is currently empty</strong>}
+				}) : 
+				<div style={{padding: '20px 0'}}>
+					<h3><strong>Your cart is currently empty</strong></h3>
+					<Link to="/home"><FontAwesomeIcon icon={faArrowLeftLong} /> Continue Shoping</Link>
+				</div>
+				}
 			</tbody>
 		</table>
 	)

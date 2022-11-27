@@ -18,9 +18,9 @@ const Cart = () => {
 
 	console.log(totalCart)
 	console.log(totalAmount)
-	
+
 	return (
-		<div className='cart_section'>
+		<div className='main_content'>
 			<div className='container'>
 			<h1>Cart</h1>
 			<div className="add_product">
