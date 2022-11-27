@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { increament, decreaseQuantity } from "../../redux/cart/cart.slice";
+import { addCartItems, decreaseQuantity } from "../../redux/cart/cart.slice";
 
 
 const ProductDetail = ()=>{
@@ -10,11 +10,11 @@ const ProductDetail = ()=>{
 
     const dispatch = useDispatch();
 
-    const onUpClick = () => {
-        dispatch(increament());
+    const onUpClick = (product) => {
+        dispatch(addCartItems(product));
     };
-    const onDownClick = () => {
-        dispatch(decreaseQuantity());
+    const onDownClick = (product) => {
+        dispatch(decreaseQuantity(product));
     };
 
     const params = useParams();
@@ -56,9 +56,9 @@ const ProductDetail = ()=>{
                             </div>
 
                             <div className='quantity'>
-                                <button onClick={(e)=> onUpClick()}>+</button>
-                                <p className='num'>{product.cartQuantity}</p>
-                                <button onClick={(e)=>onDownClick()}>-</button>
+                                <button onClick={()=> onUpClick(product)}>+</button>
+                                <p className='num'>{product.cartQuantity === 1}</p>
+                                <button onClick={()=>onDownClick(product)}>-</button>
                             </div>
 
                             <button>Add to Cart</button>

@@ -23,7 +23,7 @@ const Header = ()=>{
 		<div className='header-section'>
 			<div className="container">
 				<header>
-					<div className="logo"><h3>ONLINE SHOPPING</h3></div>
+					<div className="logo"><Link to="/home"><h3>ONLINE SHOPPING</h3></Link></div>
 
 					<div className="navigation">
 						<ul className="nav">

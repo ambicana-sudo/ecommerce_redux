@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import {useDispatch} from 'react-redux'
-import { deleteCartItem } from "../../redux/cart/cart.slice";
+import { deleteCartItem, addCartItems, decreaseQuantity } from "../../redux/cart/cart.slice";
 
 const CartTable = (props) => {
 	const dispatch = useDispatch()
@@ -10,6 +10,14 @@ const CartTable = (props) => {
 	const removeProduct = (cartItem)=>{
 		dispatch(deleteCartItem(cartItem))
 	}
+
+	const onUpClick = (product) => {
+		dispatch(addCartItems(product));
+	};
+	const onDownClick = (product) => {
+		dispatch(decreaseQuantity(product));
+	};
+
 	return (
 		<table>
 			<thead>
@@ -23,24 +31,26 @@ const CartTable = (props) => {
 			</thead>
 
 			<tbody>
-				{props.cartItem.length > 0 ? props.cartItem.map((item) => {
+				{props.cartItem.length > 0 ? props.cartItem.map((item, id) => {
 					const { name, price } = item;
 					return (
-						<tr>
+						<tr key={item.id}>
 							<td>
-								<div className="product-image">
-									{item.filePath ? <img src={require('../../uploads/' + item.filePath)} alt="" /> : 'image not found'}
+								<div className="product_info">
+									<div className="product-image">
+										{item.filePath ? <img src={require('../../uploads/' + item.filePath)} alt="" /> : 'image not found'}
+									</div>
+									<h3 className="product-name">{name}</h3>
 								</div>
-								<h3 className="product-name">{name}</h3>
 							</td>
 							<td>
 								<p className="product-price"><em>${price}</em></p>
 							</td>
 							<td>
 								<div className='quantity'>
-									<button onClick={(e) => props.increase()}>+</button>
+									<button onClick={(e) => onDownClick(item)}>-</button>
 									<p className='num'>{item.cartQuantity}</p>
-									<button onClick={(e) => props.decrease()}>-</button>
+									<button onClick={(e) => onUpClick(item)}>+</button>
 								</div>
 							</td>
 							<td>

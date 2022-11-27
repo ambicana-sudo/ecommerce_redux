@@ -1,16 +1,25 @@
 import React from "react";
+import { useDispatch } from 'react-redux'
+import { clearCart } from "../../redux/cart/cart.slice";
+// import { totalAmount } from "../../redux/cart/cart.slice";
 
-const CartSummary = () => {
+const CartSummary = (props) => {
+    const dispatch = useDispatch()
+    const emptyCart = ()=>{
+		dispatch(clearCart())
+	}
     return (
         <div className='cart_summary'>
-            <button className='clear_cart'>Clear Cart</button>
+            <div className="clear_btn">
+                <button onClick={()=> emptyCart()}>Clear Cart</button>
+            </div>
 
             <div className='cart_checkout'>
                 <div className='subtotal'>
-                    <p>Subtotal: </p>
-						  <p>Discount: </p>
+                    <p><strong>Subtotal</strong>:  ${props.totalAmount}</p>
+					<p><strong>Discount</strong>: </p>
                     <p className='amount'>
-                        Toatal Amount: $
+                        <strong>Total Amount</strong>:
                     </p>
                 </div>
 

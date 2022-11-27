@@ -19,6 +19,7 @@ const cartSlice = createSlice({
 	name: "cart",
 	initialState,
 	reducers: {
+		// ADD PRODUCTS TO CART
 		addCartItems: (state, action) => {
 			// state.cartItems.push(action.payload)
 			// console.log(state.cartItems)
@@ -43,21 +44,19 @@ const cartSlice = createSlice({
 			localStorage.setItem("cartItem", JSON.stringify(state.cartItems))
 		},
 
+		// DELETE PRODUCTS FROM CART
 		deleteCartItem: (state, action)=>{
 			const newCartItems = state.cartItems.filter((item)=>{
 				return item._id !== action.payload._id
 			})
 
-			message.success(`Deleted <strong>${action.payload.name}</strong> from your cart`)
+			message.error(`Deleted <strong>${action.payload.name}</strong> from your cart`)
 
 			state.cartItems = newCartItems
 			localStorage.setItem('cartItem', JSON.stringify(state.cartItems))
 		},
 
-		increament: (state, action) => {
-			state.count = state.count + 1;
-		},
-
+		// DECREASE PRODUCT QUANTITY
 		decreaseQuantity: (state, action) => {
 			// find index
 			const itemIndex = state.cartItems.findIndex((item) => {
@@ -72,11 +71,29 @@ const cartSlice = createSlice({
 				})
 
 				state.cartItems = newCartItems
-				localStorage.setItem('cartItem', JSON.stringify(state.cartItems))
 			}
+			localStorage.setItem('cartItem', JSON.stringify(state.cartItems))
+		},
+
+		//CLEAR CART
+		clearCart: (state)=>{
+			state.cartItems = []
+
+			message.error('Cart Cleared')
+			localStorage.setItem('cartItem', JSON.stringify(state.cartItems))
+		},
+
+		//TOTAL AMOUNT
+		totalAmount: (state, action)=>{
+			const totalAmount = state.cartItems.reduce((acc, cartItem)=>{
+				const totalPrice = cartItem.cartQuantity * cartItem.price
+				console.log(totalPrice)
+				return acc + totalPrice
+			},0)
+			state.cartTotalAmount = totalAmount
 		},
 	}
 });
 
-export const { increament, decreaseQuantity, addCartItems, deleteCartItem, addLikedItems } = cartSlice.actions;
+export const { decreaseQuantity, addCartItems, deleteCartItem, clearCart, addLikedItems, totalAmount } = cartSlice.actions;
 export default cartSlice.reducer;

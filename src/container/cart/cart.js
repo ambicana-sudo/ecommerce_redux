@@ -1,30 +1,32 @@
 import React from 'react'
-// import {useState} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { increament, decreaseQuantity } from "../../redux/cart/cart.slice";
+
+import { useSelector} from 'react-redux'
 import CartSummary from './cartSummary';
 import CartTable from './cartTable';
 
 const Cart = () => {
 	const { cartItems } = useSelector((state) => state.cart);
 
-	const dispatch = useDispatch();
+	const totalAmount = cartItems.reduce((acc, cartItem)=>{
+		const totalPrice = cartItem.cartQuantity * cartItem.price
+		return acc + totalPrice
+	},0)
 
-	const onUpClick = () => {
-		dispatch(increament());
-	};
-	const onDownClick = () => {
-		dispatch(decreaseQuantity());
-	};
+	const totalCart = cartItems.reduce((acc, cartItem)=>{
+		return acc + cartItem.cartQuantity
+	},0)
 
+	console.log(totalCart)
+	console.log(totalAmount)
+	
 	return (
 		<div className='cart_section'>
 			<div className='container'>
 			<h1>Cart</h1>
 			<div className="add_product">
-				<CartTable cartItem={cartItems} decrease={onDownClick} increase={onUpClick} />
+				<CartTable cartItem={cartItems}/>
 
-				<CartSummary />
+				<CartSummary totalAmount={totalAmount}/>
 			</div>
 			</div>
 		</div>

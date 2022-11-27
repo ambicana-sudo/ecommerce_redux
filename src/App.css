@@ -1019,3 +1019,42 @@ tr:nth-child(even) {
             transform: rotate(1turn);
   }
 }
+
+/* cart page */
+.product_info {
+  display: flex;
+  align-items: center;
+}
+
+.product_info .product-name {
+  padding-left: 10px;
+}
+
+.cart_summary {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.clear_btn {
+  align-self: flex-start;
+  flex-grow: 1;
+  display: inline-block;
+  width: auto;
+}
+
+.cart_summary>button {
+  align-self: flex-start;
+  flex-grow: 1;
+  display: inline-block;
+  width: auto;
+}
+.cart_checkout {
+  border: 1px solid #ccc;
+  padding: 20px;
+  background: #19246c;
+  color: #fff;
+}
+
+.cart_checkout button{
+  width: 100%;
+}
