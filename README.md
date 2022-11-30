@@ -24,8 +24,8 @@
   - [x] Add Products
   - [ ] Add New Product Tag
   - [ ] Filter Products by Category and Brand
-  - [ ] Add and Remove Products from Cart
-  - [ ] Add and Remove Products from Wishlist
+  - [x] Add and Remove Products from Cart
+  - [x] Add and Remove Products from Wishlist
   - [ ] Total no. of Items and Price calculation
   
 ## Future Features
